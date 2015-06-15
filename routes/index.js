@@ -1,6 +1,7 @@
 var express = require('express');
 var appUtils = require('../utils/app-utils');
 var router = express.Router();
+var userController = require('../controllers/user');
 
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler
@@ -13,53 +14,48 @@ var isAuthenticated = function (req, res, next) {
 }
 
 module.exports = function(passport){
-    router.all('*', function(req,res){
+
+    router.use(function(req,res,next){
         res.locals.pageInfo = appUtils.generatePageInfo(req.originalUrl);
         next();
     });
 
-    /* GET login page. */
     router.get('/', function(req, res) {
         res.render('index', {
             message: req.flash('message'),
-            pageInfo: res.locals.pageInfo
+            pageInfo: res.locals.pageInfo,
+            user: req.user
         });
     });
 
-    /* Handle Login POST */
-    router.post('/login', passport.authenticate('login', {
-        successRedirect: '/home',
-        failureRedirect: '/',
-        failureFlash : true
-    }));
-
-    /* Handle Login GET */
-    router.get('/login', function(req,res){
-        res.render('login');
+    router.get('/mult', function(req, res) {
+        res.render('mult/index', {
+            message: req.flash('message'),
+            pageInfo: res.locals.pageInfo,
+            user: req.user
+        });
     });
 
-    /* GET Registration Page */
-    router.get('/create', function(req, res){
-        res.render('register',{message: req.flash('message')});
+    router.get('/news', function(req, res) {
+        res.render('news/index', {
+            message: req.flash('message'),
+            pageInfo: res.locals.pageInfo,
+            user: req.user
+        });
     });
 
-    /* Handle Registration POST */
-    router.post('/signup', passport.authenticate('signup', {
-        successRedirect: '/home',
-        failureRedirect: '/signup',
-        failureFlash : true
-    }));
 
-    /* GET Home Page */
-    router.get('/home', isAuthenticated, function(req, res){
-        res.render('home', { user: req.user });
-    });
 
-    /* Handle Logout */
-    router.get('/signout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+    router.get('/login', userController.getLogin);
+    router.get('/contacts/create', userController.getCreate);
+    router.get('/contacts/edit/:id', userController.getEdit);
+    router.get('/contacts', userController.getAll);
+
+    router.get('/logout', userController.logout);
+    router.post('/login', function(req,res,next){ userController.login(passport,req,res,next); });
+    router.post('/contacts/create', function(req,res,next){ userController.create(passport,req,res,next); });
+    router.post('/contacts/edit', function(req,res,next){ userController.edit(passport,req,res,next); });
+    router.get('/contacts/delete', userController.delete);
 
     return router;
 }

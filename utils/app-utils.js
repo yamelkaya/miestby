@@ -10,14 +10,20 @@ function AppUtils(){
 AppUtils.prototype.generatePageInfo = function(path){
     var menuItems = clientConfig.menuItems;
     var menu = [];
+    var selected = null;
 
     _.forEach(menuItems,function(item){
-       menu.push(_.defaults({},item,{class : item.path == path  ? 'active' : ''}));
+       var i = _.defaults({},item);
+       if ((item.path == path && (item.path== "/" || item.path=="")) || (item.path != "/" && item.path!="" && path.indexOf(item.path)!= -1)){
+           i.class = 'active';
+           selected = i;
+       }
+       menu.push(i);
     });
 
     return {
-
-        menu: menu
+        menu: menu,
+        selectedMenuItem : selected
     }
 }
 

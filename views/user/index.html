@@ -1,0 +1,26 @@
+<div>
+    <div class="form-group text-right">
+        <a class="btn btn-primary" href="/contacts/create">Добавить</a>
+    </div>
+    {{#contacts}}
+        <div class="well row">
+            <div class="col-xs-3">
+                <img src="http://cs623430.vk.me/v623430567/267a1/xnRkLd_bqlw.jpg" class="img-thumbnail">
+            </div>
+            <div class="col-xs-9">
+                <h3 class="row">
+                    <div class="col-xs-6">{{firstName}} {{lastName}}</div>
+                    <div class="col-xs-6 text-right">
+                        <a class="btn btn-primary btn-sm" href="contacts/edit/{{_id}}">Редактировать</a>
+                        <a class="btn btn-default btn-sm" href="contacts/delete/{{_id}}">Удалить</a>
+                    </div>
+                </h3>
+                <br>
+                <p>{{info}} что-нибудь интересное</p>
+                <br>
+                <h4>{{phone}}</h4>
+                <h4>{{email}}</h4>
+            </div>
+        </div>
+    {{/contacts}}
+</div>

@@ -8,5 +8,6 @@ module.exports = mongoose.model('User',{
     phone: String,
     info: String,
     isVisibleForAll: Boolean,
+    isContactsVisible: Boolean,
     photoUrl: String
 });

@@ -2,11 +2,27 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{{pageInfo.title}}</title>
+    <link href="/public/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/public/css/main.css" rel="stylesheet" type="text/css">
+    <title>{{pageInfo.selectedMenuItem.title}}</title>
 </head>
 <body>
-    {{> menu}}
-    {{> loginLink}}
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+                {{> menu}}
+                {{> loginLink}}
+        </div>
+    </nav>
+    <div class="page-header">
+        <h1>{{pageInfo.selectedMenuItem.label}}</h1>
+    </div>
     {{{ yield }}}
+</div>
+<div class="panel-footer">
+    <div class="text-center">
+        Мы есть! &copy; <script>document.write(new Date().getFullYear())</script>
+    </div>
+</div>
 </body>
 </html>

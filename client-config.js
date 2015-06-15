@@ -24,6 +24,6 @@ module.exports = {
             path: '/contacts',
             label: 'Контакты',
             title: 'Наши контакты'
-        }
+        },
     ]
 }

@@ -18,14 +18,14 @@ var app = express();
 app.engine('html', require('hogan-express'));
 app.set('view engine', 'html');
 app.set('layout', 'layout');
-app.set('partials', {menu: 'shared/menu', loginLink: 'shared/login-link'});
+app.set('partials', {menu: 'shared/menu', loginLink: 'shared/login-link', errorMessage: 'shared/error-message'});
 
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(__dirname + '/public'));
 
 // Configuring Passport
 var passport = require('passport');

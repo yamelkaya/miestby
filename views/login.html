@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
 <form action="/login" method="post">
-    <label for="username">Эл. почта</label>
-    <input id="username" type="text">
+    <label for="email">Эл. почта</label>
+    <input id="email" name="email" type="text">
     <label for="password">Пароль</label>
-    <input id="password" type="password">
+    <input id="password" name="password" type="password">
     <button type="submit">Войти</button>
 </form>
-</body>
-</html>
+{{> errorMessage}}
