@@ -44,8 +44,6 @@ module.exports = function(passport){
         });
     });
 
-
-
     router.get('/login', userController.getLogin);
     router.get('/contacts/create', userController.getCreate);
     router.get('/contacts/edit/:id', userController.getEdit);
@@ -53,9 +51,11 @@ module.exports = function(passport){
 
     router.get('/logout', userController.logout);
     router.post('/login', function(req,res,next){ userController.login(passport,req,res,next); });
-    router.post('/contacts/create', function(req,res,next){ userController.create(passport,req,res,next); });
-    router.post('/contacts/edit', function(req,res,next){ userController.edit(passport,req,res,next); });
-    router.get('/contacts/delete', userController.delete);
+    router.post('/contacts/create',userController.create);
+    router.post('/contacts/edit/:id', userController.edit);
+    router.get('/contacts/delete/:id', userController.delete);
+
+
 
     return router;
 }

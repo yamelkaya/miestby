@@ -4,6 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer  = require('multer');
 
 var dbConfig = require('./db');
 var mongoose = require('mongoose');
@@ -24,6 +25,7 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(multer());
 app.use(cookieParser());
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -40,7 +42,7 @@ var flash = require('connect-flash');
 app.use(flash());
 
 // Initialize Passport
-var initPassport = require('./passport/init');
+var initPassport = require('./services/passport/init');
 initPassport(passport);
 
 var routes = require('./routes/index')(passport);
