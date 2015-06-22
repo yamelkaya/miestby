@@ -1,3 +1,30 @@
 <div>
-    <h1>Список мультфильмов будет тут!</h1>
+    <div class="form-group text-right">
+        {{#user}}
+        <a class="btn btn-primary" href="/mult/create">Добавить</a>
+        {{/user}}
+    </div>
+    {{#mults}}
+    <div class="well row">
+        <div class="col-xs-3">
+            <iframe src="http://www.youtube.com/embed/gNbJFy0xQUo" class="img-thumbnail"></iframe>
+        </div>
+        <div class="col-xs-9">
+            <h3 class="row">
+                <div class="col-xs-6">
+                    <h2>{{name}}</h2>
+                </div>
+                <div class="col-xs-6 text-right">
+                    {{#user}}
+                    <a class="btn btn-primary btn-sm" href="/mult/edit/{{_id}}">Редактировать</a>
+                    <a class="btn btn-default btn-sm" href="/mult/delete/{{_id}}">Удалить</a>
+                    {{/user}}
+                </div>
+            </h3>
+            <br>
+            <p>{{description}}</p>
+            <br>
+        </div>
+    </div>
+    {{/mults}}
 </div>

@@ -1,7 +1,8 @@
 var express = require('express');
-var appUtils = require('../utils/app-utils');
+var appUtils = require('../utils/appUtils');
 var router = express.Router();
 var userController = require('../controllers/user');
+var multController = require('../controllers/mult');
 
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler
@@ -28,14 +29,6 @@ module.exports = function(passport){
         });
     });
 
-    router.get('/mult', function(req, res) {
-        res.render('mult/index', {
-            message: req.flash('message'),
-            pageInfo: res.locals.pageInfo,
-            user: req.user
-        });
-    });
-
     router.get('/news', function(req, res) {
         res.render('news/index', {
             message: req.flash('message'),
@@ -55,6 +48,14 @@ module.exports = function(passport){
     router.post('/contacts/edit/:id', userController.edit);
     router.get('/contacts/delete/:id', userController.delete);
 
+
+    router.get('/mult/create', multController.getCreate);
+    router.get('/mult/edit/:id', multController.getEdit);
+    router.get('/mult', multController.getAll);
+
+    router.post('/mult/create',multController.create);
+    router.post('/mult/edit/:id', multController.edit);
+    router.get('/mult/delete/:id', multController.delete);
 
 
     return router;
