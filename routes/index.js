@@ -51,6 +51,7 @@ module.exports = function(passport){
 
     router.get('/mult/create', multController.getCreate);
     router.get('/mult/edit/:id', multController.getEdit);
+    router.get('/mult/:id', multController.getDetails);
     router.get('/mult', multController.getAll);
 
     router.post('/mult/create',multController.create);

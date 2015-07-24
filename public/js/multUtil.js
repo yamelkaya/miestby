@@ -1,6 +1,3 @@
-_ = require('lodash');
-module.exports = new MultUtils();
-
 function MultUtils(){
     var dataSources = [new YoutubeSourceUtil()];
 

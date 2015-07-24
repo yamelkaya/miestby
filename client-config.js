@@ -17,7 +17,7 @@ module.exports = {
         },
         {
             path: 'http://club5000.by/',
-            label: 'Помошь',
+            label: 'Помощь',
             title: 'Помощь'
         },
         {

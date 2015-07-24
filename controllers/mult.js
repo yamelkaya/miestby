@@ -19,16 +19,17 @@ function MultController () {
     }
 
     var setVideoMeta = function(mult){
-        var meta = MultUtil.getVideoMeta(mult.link);
+        var meta = MultUtil.getVideoMeta(mult.originalLink);
         mult.linkId = meta.id;
         mult.linkSource = meta.source;
+        mult.link = meta.videoLink;
     }
 
 
     var createNewMult= function (mult, imageUrl, callback){
         var newMult = new Mult(mult);
 
-        setVideoMeta(mult);
+        setVideoMeta(newMult);
 
         if (imageUrl)
         {
@@ -53,7 +54,7 @@ function MultController () {
             updated.photos = [imageUrl];
         }
 
-        User.update({_id : mult._id}, {$set: updated}, {upsert: true},function(err) {
+        Mult.update({_id : mult._id}, {$set: updated}, {upsert: true},function(err) {
             if (err){
                 throw err;
             }
@@ -66,6 +67,11 @@ function MultController () {
         res.redirect('/mult');
     }
 
+    var updateMultDetails = function(mult){
+        mult.formattedDate =  mult.date.getFullYear();
+        return mult;
+    }
+
     this.getAll = function(req, res){
         Mult.find(function(err, result){
             if (err){
@@ -76,6 +82,22 @@ function MultController () {
                 pageInfo: res.locals.pageInfo,
                 user: req.user,
                 mults: result
+            });
+        })
+    }
+
+    this.getDetails = function(req,res){
+        Mult.findOne({_id: req.param('id') },function(err, result){
+            if (err){
+                throw new Error(err);
+            }
+
+            res.render('mult/details', {
+                message: req.flash('message'),
+                pageInfo: res.locals.pageInfo,
+                user: req.user,
+                mult: updateMultDetails(result),
+                postAction: 'edit'
             });
         })
     }
@@ -95,7 +117,7 @@ function MultController () {
                 throw new Error(err);
             }
 
-            res.render('user/form', {
+            res.render('mult/form', {
                 message: req.flash('message'),
                 pageInfo: res.locals.pageInfo,
                 user: req.user,
@@ -142,7 +164,7 @@ function MultController () {
                 throw err;
             }
 
-            redirectToIndex();
+            redirectToIndex(res);
         });
     }
 };

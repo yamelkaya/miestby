@@ -1,10 +1,10 @@
 <div>
     <div class="form-group text-right">
-        {{#user}}
+        {{#user._id}}
         <a class="btn btn-primary" href="/contacts/create">Добавить</a>
-        {{/user}}
+        {{/user._id}}
     </div>
-    {{#user}}
+    {{#user._id}}
     {{#contacts}}
     <div class="well row">
         <div class="col-xs-3">
@@ -14,10 +14,8 @@
             <h3 class="row">
                 <div class="col-xs-6">{{firstName}} {{lastName}}</div>
                 <div class="col-xs-6 text-right">
-                    {{#user}}
                     <a class="btn btn-primary btn-sm" href="contacts/edit/{{_id}}">Редактировать</a>
                     <a class="btn btn-default btn-sm" href="contacts/delete/{{_id}}">Удалить</a>
-                    {{/user}}
                 </div>
             </h3>
             <br>
@@ -29,9 +27,9 @@
     </div>
 
     {{/contacts}}
-    {{/user}}
+    {{/user._id}}
 
-    {{^user}}
+    {{^user._id}}
     {{#contacts}}
     <div class="well row">
         <div class="col-xs-3">
@@ -40,12 +38,6 @@
         <div class="col-xs-9">
             <h3 class="row">
                 <div class="col-xs-6">{{firstName}} {{lastName}}</div>
-                <div class="col-xs-6 text-right">
-                    {{#user}}
-                    <a class="btn btn-primary btn-sm" href="contacts/edit/{{_id}}">Редактировать</a>
-                    <a class="btn btn-default btn-sm" href="contacts/delete/{{_id}}">Удалить</a>
-                    {{/user}}
-                </div>
             </h3>
             <br>
             <p>{{info}}</p>
@@ -58,5 +50,5 @@
     </div>
 
     {{/contacts}}
-    {{/user}}
+    {{/user._id}}
 </div>
