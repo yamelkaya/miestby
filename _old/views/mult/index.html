@@ -1,0 +1,35 @@
+<div>
+    <div class="form-group text-right">
+        {{#user}}
+        <a class="btn btn-primary" href="/mult/create">Добавить</a>
+        {{/user}}
+    </div>
+    {{#mults}}
+    <div class="well row">
+        <div class="col-xs-3">
+            <div class="embed-responsive embed-responsive-4by3">
+                <iframe src="{{link}}" class="embed-responsive-item"></iframe>
+            </div>
+        </div>
+        <div class="col-xs-9">
+            <h3 class="row">
+                <div class="col-xs-6">
+                    <h2>
+                        <a href="/mult/{{_id}}">{{name}}</a>
+                    </h2>
+                </div>
+                <div class="col-xs-6 text-right">
+                    {{#user._id}}
+                    <a class="btn btn-primary btn-sm" href="/mult/edit/{{_id}}">Редактировать</a>
+                    <a class="btn btn-default btn-sm" href="/mult/delete/{{_id}}">Удалить</a>
+                    {{/user._id}}
+                </div>
+            </h3>
+            <h5>{{participants}}</h5>
+            <br>
+            <p>{{description}}</p>
+            <br>
+        </div>
+    </div>
+    {{/mults}}
+</div>

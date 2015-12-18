@@ -1,0 +1,54 @@
+<div>
+    <div class="form-group text-right">
+        {{#user._id}}
+        <a class="btn btn-primary" href="/contacts/create">Добавить</a>
+        {{/user._id}}
+    </div>
+    {{#user._id}}
+    {{#contacts}}
+    <div class="well row">
+        <div class="col-xs-3">
+            <img src="{{photoUrl}}" class="img-thumbnail">
+        </div>
+        <div class="col-xs-9">
+            <h3 class="row">
+                <div class="col-xs-6">{{firstName}} {{lastName}}</div>
+                <div class="col-xs-6 text-right">
+                    <a class="btn btn-primary btn-sm" href="contacts/edit/{{_id}}">Редактировать</a>
+                    <a class="btn btn-default btn-sm" href="contacts/delete/{{_id}}">Удалить</a>
+                </div>
+            </h3>
+            <br>
+            <p>{{info}}</p>
+            <br>
+            <h4>{{phone}}</h4>
+            <h4>{{email}}</h4>
+        </div>
+    </div>
+
+    {{/contacts}}
+    {{/user._id}}
+
+    {{^user._id}}
+    {{#contacts}}
+    <div class="well row">
+        <div class="col-xs-3">
+            <img src="{{photoUrl}}" class="img-thumbnail">
+        </div>
+        <div class="col-xs-9">
+            <h3 class="row">
+                <div class="col-xs-6">{{firstName}} {{lastName}}</div>
+            </h3>
+            <br>
+            <p>{{info}}</p>
+            <br>
+            {{#isContactsVisible}}
+            <h4>{{phone}}</h4>
+            <h4>{{email}}</h4>
+            {{/isContactsVisible}}
+        </div>
+    </div>
+
+    {{/contacts}}
+    {{/user._id}}
+</div>

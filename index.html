@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Angular 2 QuickStart</title>
+    <!-- 1. Load libraries -->
+    <!--<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>-->
+    <!--<script src="node_modules/traceur/bin/traceur-runtime.js"></script>-->
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js"></script>-->
+    <!--&lt;!&ndash;<script src="node_modules/babel-core/lib/api/browser.js"></script>&ndash;&gt;-->
+    <!--<script src="node_modules/systemjs/dist/system.src.js"></script>-->
+    <!--<script src="node_modules/rxjs/bundles/Rx.js"></script>-->
+    <meta charset="utf-8" />
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/traceur/bin/traceur-runtime.js"></script>
+    <script src="node_modules/babel-core/browser.min.js"></script>
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.min.js"></script>-->
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.min.js"></script>
+    <script>
+        //configure system loader
+        System.config({
+            transpiler: 'babel',
+            babelOptions: {
+                stage: 0
+            },
+            defaultExtension: 'es6'
+        });
+    </script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+</head>
+<!-- 3. Display the application -->
+<body>
+<my-app>Loading...</my-app>
+</body>
+
+<script>
+    //bootstrap the Angular2 application
+    System.import('./app/boot.es6').catch(console.log.bind(console));
+</script>
+</html>
