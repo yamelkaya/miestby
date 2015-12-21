@@ -6,21 +6,28 @@ module.exports = function (grunt) {
         browserify: {
             app: {
                 options: {
-                    extensions: ['.js', '.json', '.es6'],
                     debug: true,
                     browserifyOptions: {
                         debug: true
                     },
-                    transform: [["babelify", {presets: ['stage-0', 'es2015']}]]
+                    transform: [["babelify"]]
                 },
                 files: {
-                    "./build/module.js": ['./app/**/*.es6']
+                    "./build/module.js": './app/boot.js'
                 }
+            }
+        },
+        watch: {
+            scripts: {
+                files: ["./app/**/*.js"],
+                tasks: ["browserify"]
             }
         }
     });
 
     grunt.loadNpmTasks("grunt-browserify");
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
+    grunt.registerTask("default", ["watch"]);
     grunt.registerTask('build', ['browserify']);
 };

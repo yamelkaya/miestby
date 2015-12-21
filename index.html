@@ -2,27 +2,27 @@
 <head>
     <title>Студия детской анимации "Мы есть!"</title>
     <meta charset="utf-8" />
-    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
-    <script src="node_modules/traceur/bin/traceur-runtime.js"></script>
-    <script src="node_modules/babel-core/browser.min.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.min.js"></script>
-    <script>
-        System.config({
-            transpiler: 'babel',
-            babelOptions: {
-                stage: 0
-            },
-            packages: {
-                './app': {
-                    "defaultExtension": "js",
-                    "defaultJSExtensions": true
-                }
-            }
-        });
-    </script>
-    <script src="node_modules/angular2/bundles/router.dev.js"></script>
-    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <!--<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>-->
+    <!--<script src="node_modules/traceur/bin/traceur-runtime.js"></script>-->
+    <!--<script src="node_modules/babel-core/browser.min.js"></script>-->
+    <!--<script src="node_modules/systemjs/dist/system.src.js"></script>-->
+    <!--<script src="node_modules/rxjs/bundles/Rx.min.js"></script>-->
+    <!--<script>-->
+        <!--System.config({-->
+            <!--transpiler: 'babel',-->
+            <!--babelOptions: {-->
+                <!--stage: 0-->
+            <!--},-->
+            <!--packages: {-->
+                <!--'./app': {-->
+                    <!--"defaultExtension": "js",-->
+                    <!--"defaultJSExtensions": true-->
+                <!--}-->
+            <!--}-->
+        <!--});-->
+    <!--</script>-->
+    <!--<script src="node_modules/angular2/bundles/router.dev.js"></script>-->
+    <!--<script src="node_modules/angular2/bundles/angular2.dev.js"></script>-->
     <link href="public/bootstrap.min.css" rel="stylesheet">
     <link href="public/app.css" rel="stylesheet">
 </head>
@@ -34,7 +34,8 @@
 </mst-app>
 </body>
 
-<script>
-    System.import('./app/boot').catch(console.log.bind(console));
-</script>
+<!--<script>-->
+    <!--System.import('./app/boot').catch(console.log.bind(console));-->
+<!--</script>-->
+<script src="build/module.js"></script>
 </html>

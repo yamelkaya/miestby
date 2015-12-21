@@ -6,7 +6,7 @@ import {NewsListComponent} from './news-list.component';
 
 @Component({
     template:  `<router-outlet></router-outlet>`,
-    providers: [NewsService],
+    viewProviders: [NewsService],
     directives: [RouterOutlet]
 })
 @RouteConfig([
