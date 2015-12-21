@@ -22,5 +22,4 @@ export class NewsService {
     getNews() {
         return Promise.resolve(this._news);
     }
-
 }

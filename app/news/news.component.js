@@ -6,7 +6,7 @@ import {NewsListComponent} from './news-list.component';
 
 @Component({
     template:  `<router-outlet></router-outlet>`,
-    viewProviders: [NewsService],
+    //viewProviders: [NewsService],
     directives: [RouterOutlet]
 })
 @RouteConfig([
@@ -14,5 +14,4 @@ import {NewsListComponent} from './news-list.component';
     {path:'/detail/:id',      name: 'NewsDetail', component: NewsDetailComponent}
 ])
 export class NewsComponent {
-
 }

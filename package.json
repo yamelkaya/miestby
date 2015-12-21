@@ -18,8 +18,8 @@
   "homepage": "https://github.com/yamelkaya/miestby",
   "scripts": {
     "test": "grunt test",
-    "lite": "lite-server ./build/module.js",
-    "start": "grunt concurrent \"npm run lite\" "
+    "lite": "lite-server --files ./build/module.js",
+    "start": "grunt browserify && npm run lite | grunt watch"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.0",
