@@ -14,6 +14,7 @@ export class NewsListComponent{
 
     constructor(newsService){
         this._newsService = newsService;
+        this._news = [];
     }
 
     ngOnInit(){

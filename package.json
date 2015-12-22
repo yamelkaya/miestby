@@ -19,7 +19,8 @@
   "scripts": {
     "test": "grunt test",
     "lite": "lite-server --files ./build/module.js",
-    "start": "grunt browserify && npm run lite | grunt watch"
+    "start": "grunt browserify && npm run lite",
+    "watch": "grunt watch"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.0",

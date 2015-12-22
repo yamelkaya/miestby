@@ -1,1 +1,14 @@
-<div>details</div>
+<h3>
+    {{item.title}}
+</h3>
+
+<div class="details">
+    <div class="col-lg-6">
+        <div class="embed-responsive embed-responsive-4by3">
+            <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
+        </div>
+    </div>
+    <div class="details">
+        {{item.titleDetails}}
+    </div>
+</div>

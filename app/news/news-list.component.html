@@ -2,6 +2,23 @@
     Новости
 </h3>
 
-<div class="well" *ngFor="#item of news">
-    <a [routerLink]="item.url">{{item.title}}</a>
+<div class="list">
+    <div class="list-item row" *ngFor="#item of news">
+        <div class="col-lg-4">
+            <div class="embed-responsive embed-responsive-4by3">
+                <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <a class="h4" [routerLink]="item.url">{{item.title}}</a>
+            <div class="details">
+                <small>{{item.titleDetails}}</small>
+            </div>
+            <div class="button-container">
+                <button class="btn btn-primary">Редактировать</button>
+                <button class="btn btn-primary">Удалить</button>
+            </div>
+        </div>
+    </div>
 </div>
+

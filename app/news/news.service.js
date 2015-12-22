@@ -6,9 +6,10 @@ export class NewsService {
         this._news = [{
             _id: 1,
             title: 'Рождественское, часть 1',
-            titleMedia: 'https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo',
+            titleMediaType: 0,
+            titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
             titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
+Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
 Весь мультфильм обещал быть готовым к 5 января.`,
             images: ['http://i.imgur.com/pbramIa.jpg'],
             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
@@ -19,7 +20,8 @@ export class NewsService {
         }];
     }
 
-    getNews() {
-        return Promise.resolve(this._news);
+    getNews(id) {
+        let result = id ? this._news.find(n => n._id == id) : this._news;
+        return Promise.resolve(result);
     }
 }
