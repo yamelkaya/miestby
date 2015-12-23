@@ -2,13 +2,20 @@
     {{item.title}}
 </h3>
 
-<div class="details">
-    <div class="col-lg-6">
-        <div class="embed-responsive embed-responsive-4by3">
-            <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
-        </div>
+<div class="details news">
+
+    <div class="text-muted small">
+        Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}
     </div>
-    <div class="details">
-        {{item.titleDetails}}
+
+    <div class="news-text">
+        <p>
+            <span class="span-50 right">
+                <span class="embed-responsive embed-responsive-4by3">
+                    <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
+                </span>
+            </span>
+            {{item.titleDetails}}
+        </p>
     </div>
 </div>

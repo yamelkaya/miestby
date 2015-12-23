@@ -1,4 +1,23 @@
-.main-menu > a.btn{
+.main-menu > a.btn {
     font-size: 18px;
-    margin: 12px 12px 0 0 ;
+    margin: 12px 12px 0 0;
+}
+
+.list-item-button-container{
+    margin: 12px 0;
+}
+
+.span-50 {
+    width: 50%;
+    display: inline-block;
+}
+
+p > [class*='span-'].right{
+    float: right;
+    margin-left: 6px;
+}
+
+p > [class*='span-'].left{
+    float: left;
+    margin-right: 6px;
 }

@@ -1,0 +1,10 @@
+<h3>
+    <div class="row">
+        <div class="col-lg-6">
+            {{title}}
+        </div>
+        <div class="col-lg-6 text-right">
+            <button *ngFor="#control of controls" class="btn btn-primary btn-sm" (click)="control.onClick()">{{control.title}}</button>
+        </div>
+    </div>
+</h3>
