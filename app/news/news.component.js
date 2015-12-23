@@ -11,7 +11,8 @@ import {NewsListComponent} from './news-list.component';
 })
 @RouteConfig([
     {path:'/',  name: 'NewsList', component: NewsListComponent, useAsDefault: true},
-    {path:'/detail/:id',      name: 'NewsDetail', component: NewsDetailComponent}
+    {path:'/detail/:id',      name: 'NewsDetail', component: NewsDetailComponent},
+    {path:'/edit/:id',      name: 'NewsEdit', component: NewsDetailComponent}
 ])
 export class NewsComponent {
-}
+}//

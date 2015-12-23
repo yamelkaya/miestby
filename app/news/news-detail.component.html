@@ -1,9 +1,6 @@
-<h3>
-    {{item.title}}
-</h3>
+<page-header [title]="header.title" [controls]="header.controls"></page-header>
 
 <div class="details news">
-
     <div class="text-muted small">
         Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}
     </div>
