@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/yamelkaya/miestby",
   "scripts": {
-    "test": "jasmine",
+    "test": "karma start karma.config.js",
     "lite": "lite-server --files ./build/module.js",
     "start": "grunt browserify && npm run lite",
     "watch": "grunt watch"
@@ -48,8 +48,9 @@
     "grunt": "^0.4.5",
     "grunt-babel": "^6.0.0",
     "grunt-browserify": "^4.0.1",
+    "grunt-contrib-watch": "^0.6.1",
     "jasmine-core": "^2.4.1",
-    "karma": "^0.13.16",
+    "karma": "^0.13.17",
     "karma-babel-preprocessor": "^6.0.1",
     "karma-browserify": "^4.4.2",
     "karma-chrome-launcher": "^0.2.2",

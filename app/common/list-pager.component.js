@@ -17,7 +17,7 @@ export class ListPagerComponent{
     }
 
     ngOnInit(){
-        //this._init();
+        this._init();
     }
 
     _defaults(){
@@ -29,7 +29,7 @@ export class ListPagerComponent{
     }
 
     _init(){
-        this._loadItems();
+        this._loadItems(this.source,this.currentPage,this.itemsPerPage);
     }
 
     _loadItems(source,currentPage,itemsPerPage){
