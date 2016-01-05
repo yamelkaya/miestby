@@ -1,5 +1,5 @@
 import {Component, Inject} from 'angular2/core';
-import {Http, Request} from 'angular2/http';
+import {Http, RequestOptions} from 'angular2/http';
 
 @Component({
     selector: 'list-pager',
@@ -34,14 +34,18 @@ export class ListPagerComponent{
 
     _loadItems(source,currentPage,itemsPerPage){
         if (source instanceof Array){
-            this._setItems(source,source.length,itemsPerPage,currentPage);
+            this._onItemsLoad(source,source.length,itemsPerPage,currentPage);
         }
-        else if (source instanceof Request){
+        else if (source instanceof RequestOptions){
+            console.log(source);
             source.headers.set('total',true);
             this._http.request(source).subscribe(res => {
                 if (res.ok){
                     let data = res.json();
-                    this._setItems(data.items,data.total,itemsPerPage,currentPage);
+                    this._onItemsLoad(data.items,data.total,itemsPerPage,currentPage);
+                }
+                else {
+                    throw Error(res.error());
                 }
             });
         }
@@ -50,9 +54,13 @@ export class ListPagerComponent{
         }
     }
 
-    _setItems(items,total,itemsPerPage,currentPage){
+    _onItemsLoad(items, total, itemsPerPage, currentPage){
         this.itemsTotal = total;
         this.pagesTotal = Math.ceil(total/itemsPerPage);
         this.items = items.slice((currentPage - 1)*itemsPerPage,currentPage*itemsPerPage);
+
+        if (this.onItemsLoad){
+            this.onItemsLoad(this.items,this.currentPage,this.pagesTotal);
+        }
     }
 }
