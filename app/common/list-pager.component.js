@@ -1,5 +1,5 @@
 import {Component, Inject} from 'angular2/core';
-import {Http, RequestOptions} from 'angular2/http';
+import {Http, BaseRequestOptions, Request} from 'angular2/http';
 
 @Component({
     selector: 'list-pager',
@@ -23,44 +23,43 @@ export class ListPagerComponent{
     _defaults(){
         this.currentPage = 1;
         this.pagesTotal = 0;
-        this.itemsPerPage = 0;
+        this.itemsPerPage = 10;
         this.itemsTotal = 0;
         this.items = [];
     }
 
     _init(){
-        this._loadItems(this.source,this.currentPage,this.itemsPerPage);
+        this._loadItems();
     }
 
-    _loadItems(source,currentPage,itemsPerPage){
-        if (source instanceof Array){
-            this._onItemsLoad(source,source.length,itemsPerPage,currentPage);
+    _loadItems(){
+        if (this.source instanceof Array){
+            this._onItemsLoad(source,source.length);
         }
-        else if (source instanceof RequestOptions){
-            console.log(source);
-            source.headers.set('total',true);
-            this._http.request(source).subscribe(res => {
-                if (res.ok){
+        else if (this.source instanceof Request){
+            this.source.headers.set('total',true);
+            this._http.request(this.source).subscribe(res => {
+                if (res.statusText == 'Ok'){
                     let data = res.json();
-                    this._onItemsLoad(data.items,data.total,itemsPerPage,currentPage);
+                    this._onItemsLoad(data.items,data.total);
                 }
                 else {
-                    throw Error(res.error());
+                    throw Error(res.text());
                 }
             });
         }
         else {
-            throw Error(`${source} is unknown source type`);
+            throw Error(`${this.source} is unknown source type`);
         }
     }
 
-    _onItemsLoad(items, total, itemsPerPage, currentPage){
+    _onItemsLoad(items, total){
         this.itemsTotal = total;
-        this.pagesTotal = Math.ceil(total/itemsPerPage);
-        this.items = items.slice((currentPage - 1)*itemsPerPage,currentPage*itemsPerPage);
+        this.pagesTotal = Math.ceil(total/this.itemsPerPage);
+        this.items = items.slice((this.currentPage - 1)*this.itemsPerPage, this.currentPage*this.itemsPerPage);
 
         if (this.onItemsLoad){
-            this.onItemsLoad(this.items,this.currentPage,this.pagesTotal);
+            this.onItemsLoad(this.items,total);
         }
     }
 }
