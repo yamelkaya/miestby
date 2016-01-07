@@ -320,6 +320,22 @@ describe('ListPager', () => {
                 contentHtml: '',
                 created: new Date('2015-12-20'),
                 updated: new Date('2015-12-24')
+            },{
+                _id: 20,
+                title: 'Рождественское, часть 1',
+                titleMediaType: 0,
+                titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
+                titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
+Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
+Весь мультфильм обещал быть готовым к 5 января.`,
+                images: ['http://i.imgur.com/pbramIa.jpg'],
+                videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
+                content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
+Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
+Весь мультфильм обещал быть готовым к 5 января.`,
+                contentHtml: '',
+                created: new Date('2015-12-20'),
+                updated: new Date('2015-12-24')
             }
         ],
         total: 20
@@ -386,6 +402,218 @@ describe('ListPager', () => {
 
         listPager.ngOnInit();
 
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it('should load last page', (done) => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 10;
+        listPager.itemsPerPage = 2;
+        listPager.onItemsLoad = (items,total) => {
+            expect(items.length).toBe(2);
+            expect(items[0]._id).toBe(19);
+            expect(total).toBe(20);
+            expect(listPager.currentPage).toBe(10);
+            expect(listPager.pagesTotal).toBe(10);
+
+            done();
+        };
+
+        listPager.ngOnInit();
+
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it('should switch to the prev page if current page > 1', done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 2;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                expect(newPage).toBe(1);
+                done();
+            };
+
+            listPager.goToPrev();
+        };
+
+        listPager.ngOnInit();
+
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it('should switch to the next page if current page < last', done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 1;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = (items,total) => {
+            listPager.onPageChange = (newPage) => {
+                expect(newPage).toBe(2);
+                done();
+            };
+
+            listPager.goToNext();
+        };
+
+        listPager.ngOnInit();
+
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`shouldn't switch to prev page if current page == 1`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 1;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                //this code must not be called
+                expect(false).toBeTruthy()
+            };
+
+            listPager.goToPrev();
+            expect(listPager.currentPage).toBe(1);
+            done();
+        };
+
+        listPager.ngOnInit();
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`shouldn't switch to next page if current page == last`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 10;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                //this code must not be called
+                expect(false).toBeTruthy()
+            };
+
+            listPager.goToNext();
+            expect(listPager.currentPage).toBe(10);
+            done();
+        };
+
+        listPager.ngOnInit();
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`should go to the page if number is valid`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 3;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = (items,total) => {
+            listPager.onPageChange = (newPage) => {
+                expect(newPage).toBe(4);
+                done();
+            };
+
+            listPager.goToPage(4);
+        };
+
+        listPager.ngOnInit();
+
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`shouldn't go to the page if number is greater then last index`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 5;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                //this code must not be called
+                expect(false).toBeTruthy()
+            };
+
+            listPager.goToPage(20);
+            expect(listPager.currentPage).toBe(5);
+            done();
+        };
+
+        listPager.ngOnInit();
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`shouldn't go to the page if number is less then 1`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 5;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                //this code must not be called
+                expect(false).toBeTruthy()
+            };
+
+            listPager.goToPage(0);
+            expect(listPager.currentPage).toBe(5);
+            done();
+        };
+
+        listPager.ngOnInit();
+        connection.mockRespond(new Response(
+            new BaseResponseOptions().merge({
+                body: responseBody
+            })));
+    });
+
+    it(`shouldn't go to the page if number is not integer`, done => {
+        let listPager = new ListPagerComponent(http);
+        listPager.source = new Request({url: 'data/news'});
+        listPager.currentPage = 5;
+        listPager.itemsPerPage = 2;
+
+        listPager.onItemsLoad = () => {
+            listPager.onPageChange = (newPage) => {
+                //this code must not be called
+                expect(false).toBeTruthy()
+            };
+
+            listPager.goToPage('text');
+            expect(listPager.currentPage).toBe(5);
+            done();
+        };
+
+        listPager.ngOnInit();
         connection.mockRespond(new Response(
             new BaseResponseOptions().merge({
                 body: responseBody

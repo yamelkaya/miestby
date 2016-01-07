@@ -20,6 +20,31 @@ export class ListPagerComponent{
         this._init();
     }
 
+    goToNext(){
+        if (this.currentPage < this.pagesTotal){
+            this.currentPage ++;
+            this._onPageChange();
+        }
+    }
+
+    goToPrev(){
+        if (this.currentPage > 1) {
+            this.currentPage --;
+            this._onPageChange();
+        }
+    }
+
+    goToPage(page){
+        if (!this._isCurrentPage(page) && this._isPageValid(page)){
+            this.currentPage = page;
+            this._onPageChange();
+        }
+    }
+
+    filter(text){
+
+    }
+
     _defaults(){
         this.currentPage = 1;
         this.pagesTotal = 0;
@@ -61,5 +86,21 @@ export class ListPagerComponent{
         if (this.onItemsLoad){
             this.onItemsLoad(this.items,total);
         }
+    }
+
+    _onPageChange(){
+        this._loadItems();
+
+        if (this.onPageChange){
+            this.onPageChange(this.currentPage);
+        }
+    }
+
+    _isCurrentPage(page){
+        return page == this.currentPage
+    }
+
+    _isPageValid(page){
+        return Number.isInteger(page) && 1 <= page && page <= this.pagesTotal;
     }
 }
