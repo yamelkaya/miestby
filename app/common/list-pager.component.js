@@ -4,7 +4,7 @@ import {Http, BaseRequestOptions, Request} from 'angular2/http';
 @Component({
     selector: 'list-pager',
     templateUrl:  'app/common/list-pager.component.html',
-    inputs: ['itemsTotal','itemsPerPage','source','currentPage','onPageChange','onItemsLoad']
+    //inputs: ['itemsTotal','itemsPerPage','source','currentPage','onPageChange','onItemsLoad']
 })
 export class ListPagerComponent{
     static parameters(){
@@ -58,6 +58,8 @@ export class ListPagerComponent{
     }
 
     _loadItems(){
+        if (!source) return;
+
         if (this.source instanceof Array){
             this._onItemsLoad(source,source.length);
         }
@@ -80,8 +82,9 @@ export class ListPagerComponent{
 
     _onItemsLoad(items, total){
         this.itemsTotal = total;
-        this.pagesTotal = Math.ceil(total/this.itemsPerPage);
         this.items = items.slice((this.currentPage - 1)*this.itemsPerPage, this.currentPage*this.itemsPerPage);
+        this.pagesTotal = Math.ceil(total/this.itemsPerPage);
+        this.pages = this._generatePages(1,this.pagesTotal);
 
         if (this.onItemsLoad){
             this.onItemsLoad(this.items,total);
@@ -102,5 +105,13 @@ export class ListPagerComponent{
 
     _isPageValid(page){
         return Number.isInteger(page) && 1 <= page && page <= this.pagesTotal;
+    }
+
+    _generatePages(start,end){
+        var list = [];
+        for (var i = start; i <= end; i++) {
+            list.push(i);
+        }
+        return list;
     }
 }

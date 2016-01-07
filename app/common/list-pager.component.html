@@ -1,0 +1,7 @@
+<ul class="pagination">
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li *ngFor="#page of pages" class="btn btn-primary btn-sm" (click)="goToPage(page)" [ngClass]="{active: _isCurrentPage(page)}">
+        <a href="#">{{page}}</a>
+    </li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
