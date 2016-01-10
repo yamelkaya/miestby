@@ -1,0 +1,1 @@
+{"version":3,"file":"page-header.component.js","sourceRoot":"","sources":["page-header.component.ts"],"names":["PageHeaderComponent"],"mappings":";;;;;;;;;;;;;;;;;;YAEA;YAMAA,CAACA;YAND;gBAAC,gBAAS,CAAC;oBACP,QAAQ,EAAE,aAAa;oBACvB,WAAW,EAAG,uCAAuC;oBACrD,MAAM,EAAE,CAAC,OAAO,EAAC,UAAU,CAAC;iBAC/B,CAAC;;oCAED;YADY,mBAAmB,sBAC/B,CAAA"}

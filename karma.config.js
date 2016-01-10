@@ -8,7 +8,7 @@ module.exports = function(karma) {
         //// add all your files here,
         //// including non-commonJS files you need to load before your test cases
         files: [
-            'app/boot.js',
+            'app/boot.ts',
             'test/**/*.js'
         ],
 
