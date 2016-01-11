@@ -3,9 +3,12 @@ System.register([], function(exports_1) {
     return {
         setters:[],
         execute: function() {
-            class News {
-            }
-            News = News;
+            News = (function () {
+                function News() {
+                }
+                return News;
+            })();
+            exports_1("News", News);
         }
     }
 });

@@ -1,12 +1,12 @@
 import {Component}     from 'angular2/core';
 import {RouteConfig, RouterOutlet} from 'angular2/router';
-import {NewsService} from './news.service.ts';
+import {NewsService} from './news.service';
 import {NewsDetailComponent} from './news-detail.component';
 import {NewsListComponent} from './news-list.component';
 
 @Component({
     template:  `<router-outlet></router-outlet>`,
-    //viewProviders: [NewsService],
+    providers: [NewsService],
     directives: [RouterOutlet]
 })
 @RouteConfig([

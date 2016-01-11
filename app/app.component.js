@@ -1,49 +1,48 @@
-System.register(['angular2/core', 'angular2/router', './common/main-menu/main-menu.component', './news/news.component', './home/home.component'], function(exports_1) {
-    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-    var __metadata = (this && this.__metadata) || function (k, v) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-    };
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
+    switch (arguments.length) {
+        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
+        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
+        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
+    }
+};System.register(['angular2/core', 'angular2/router', './common/main-menu/main-menu.component', './news/news.component', './home/home.component'], function(exports_1) {
     var core_1, router_1, main_menu_component_1, news_component_1, home_component_1;
     var AppComponent;
     return {
         setters:[
-            function (core_1_1) {
-                core_1 = core_1_1;
+            function (_core_1) {
+                core_1 = _core_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (_router_1) {
+                router_1 = _router_1;
             },
-            function (main_menu_component_1_1) {
-                main_menu_component_1 = main_menu_component_1_1;
+            function (_main_menu_component_1) {
+                main_menu_component_1 = _main_menu_component_1;
             },
-            function (news_component_1_1) {
-                news_component_1 = news_component_1_1;
+            function (_news_component_1) {
+                news_component_1 = _news_component_1;
             },
-            function (home_component_1_1) {
-                home_component_1 = home_component_1_1;
+            function (_home_component_1) {
+                home_component_1 = _home_component_1;
             }],
         execute: function() {
-            let AppComponent = class {
-            };
-            AppComponent = __decorate([
-                core_1.Component({
-                    selector: 'mst-app',
-                    templateUrl: 'app/app.component.html',
-                    directives: [router_1.ROUTER_DIRECTIVES, main_menu_component_1.MainMenuComponent]
-                }),
-                router_1.RouteConfig([
-                    { path: '/', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
-                    { path: '/news/...', name: 'News', component: news_component_1.NewsComponent }
-                ]), 
-                __metadata('design:paramtypes', [])
-            ], AppComponent);
-            AppComponent = AppComponent;
+            AppComponent = (function () {
+                function AppComponent() {
+                }
+                AppComponent = __decorate([
+                    core_1.Component({
+                        selector: 'mst-app',
+                        templateUrl: 'app/app.component.html',
+                        directives: [router_1.ROUTER_DIRECTIVES, main_menu_component_1.MainMenuComponent]
+                    }),
+                    router_1.RouteConfig([
+                        { path: '/', name: 'Home', component: home_component_1.HomeComponent, useAsDefault: true },
+                        { path: '/news/...', name: 'News', component: news_component_1.NewsComponent }
+                    ])
+                ], AppComponent);
+                return AppComponent;
+            })();
+            exports_1("AppComponent", AppComponent);
         }
     }
 });
-//# sourceMappingURL=app.component.js.map

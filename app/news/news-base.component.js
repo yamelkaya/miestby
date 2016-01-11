@@ -3,31 +3,35 @@ System.register([], function(exports_1) {
     return {
         setters:[],
         execute: function() {
-            class NewsBaseComponent {
-                constructor(router) {
+            NewsBaseComponent = (function () {
+                function NewsBaseComponent(router) {
                     this._router = router;
                     this.header = {};
                 }
-                get header() { return this._header; }
-                set header(value) { this._header = value; }
-                openNewsEdit(id) {
+                Object.defineProperty(NewsBaseComponent.prototype, "header", {
+                    get: function () { return this._header; },
+                    set: function (value) { this._header = value; },
+                    enumerable: true,
+                    configurable: true
+                });
+                NewsBaseComponent.prototype.openNewsEdit = function (id) {
                     this._navigate('NewsEdit', id ? { id: id } : undefined);
-                }
-                openNewsDetails(id) {
+                };
+                NewsBaseComponent.prototype.openNewsDetails = function (id) {
                     this._navigate('NewsDetail', id ? { id: id } : undefined);
-                }
-                _navigate(routeName, params) {
+                };
+                NewsBaseComponent.prototype._navigate = function (routeName, params) {
                     this._router.navigate([routeName, params]);
-                }
-                _setHeader(title, controls) {
+                };
+                NewsBaseComponent.prototype._setHeader = function (title, controls) {
                     this.header = {
                         title: title,
                         controls: controls
                     };
-                }
-            }
-            NewsBaseComponent = NewsBaseComponent;
+                };
+                return NewsBaseComponent;
+            })();
+            exports_1("NewsBaseComponent", NewsBaseComponent);
         }
     }
 });
-//# sourceMappingURL=news-base.component.js.map

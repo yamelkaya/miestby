@@ -1,37 +1,31 @@
-System.register(['angular2/core'], function(exports_1) {
-    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-    var __metadata = (this && this.__metadata) || function (k, v) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-    };
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
+    switch (arguments.length) {
+        case 2: return decorators.reduceRight(function(o, d) { return (d && d(o)) || o; }, target);
+        case 3: return decorators.reduceRight(function(o, d) { return (d && d(target, key)), void 0; }, void 0);
+        case 4: return decorators.reduceRight(function(o, d) { return (d && d(target, key, o)) || o; }, desc);
+    }
+};System.register(['angular2/core'], function(exports_1) {
     var core_1;
     var NewsService;
     return {
         setters:[
-            function (core_1_1) {
-                core_1 = core_1_1;
+            function (_core_1) {
+                core_1 = _core_1;
             }],
         execute: function() {
-            let NewsService = class {
-                constructor() {
+            NewsService = (function () {
+                function NewsService() {
                     this._news = [
                         {
                             _id: 1,
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: '',
                             created: new Date('2015-12-20'),
                             updated: new Date('2015-12-24')
@@ -41,14 +35,10 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         },
                         {
@@ -56,14 +46,10 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         },
                         {
@@ -71,14 +57,10 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         },
                         {
@@ -86,14 +68,10 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         },
                         {
@@ -101,14 +79,10 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         },
                         {
@@ -116,29 +90,24 @@ System.register(['angular2/core'], function(exports_1) {
                             title: 'Рождественское, часть 1',
                             titleMediaType: 0,
                             titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
-                            titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            titleDetails: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             images: ['http://i.imgur.com/pbramIa.jpg'],
                             videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
-                            content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
-Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
-Весь мультфильм обещал быть готовым к 5 января.`,
+                            content: "\u041F\u0440\u0430\u0437\u0434\u043D\u0438\u043A\u0438 \u043D\u0430 \u043D\u043E\u0441\u0443, \u043D\u0435\u0441\u043C\u043E\u0442\u0440\u044F \u043D\u0430 \u043D\u043E\u044F\u0431\u0440\u044C. \u0421\u0430\u043C\u043E\u0435 \u0432\u0440\u0435\u043C\u044F \u0437\u0430\u0434\u0443\u043C\u044B\u0432\u0430\u0442\u044C \u0436\u0435\u043B\u0430\u043D\u0438\u044F.\n\u0412\u0441\u0435 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0435 \u0432\u0438\u0434\u0435\u043E \u044D\u0442\u043E\u0433\u043E \u043C\u0443\u043B\u0442\u0444\u0438\u043B\u044C\u043C\u0430 \u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 \u043D\u0430 \u043A\u0430\u043D\u0430\u043B\u0435 \u0432 \u043F\u043B\u0435\u0439\u043B\u0438\u0441\u0442\u0435 \"\u0420\u043E\u0436\u0434\u0435\u0441\u0442\u0432\u0435\u043D\u0441\u043A\u043E\u0435\"\n\u0412\u0435\u0441\u044C \u043C\u0443\u043B\u044C\u0442\u0444\u0438\u043B\u044C\u043C \u043E\u0431\u0435\u0449\u0430\u043B \u0431\u044B\u0442\u044C \u0433\u043E\u0442\u043E\u0432\u044B\u043C \u043A 5 \u044F\u043D\u0432\u0430\u0440\u044F.",
                             contentHtml: ''
                         }
                     ];
                 }
-                getNews(id) {
-                    let result = id ? this._news.find(n => n._id == id) : this._news;
+                NewsService.prototype.getNews = function (id) {
+                    var result = id ? this._news.find(function (n) { return n._id == id; }) : this._news;
                     return Promise.resolve(result);
-                }
-            };
-            NewsService = __decorate([
-                core_1.Injectable(), 
-                __metadata('design:paramtypes', [])
-            ], NewsService);
-            NewsService = NewsService;
+                };
+                NewsService = __decorate([
+                    core_1.Injectable()
+                ], NewsService);
+                return NewsService;
+            })();
+            exports_1("NewsService", NewsService);
         }
     }
 });
-//# sourceMappingURL=news.service.js.map

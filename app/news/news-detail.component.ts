@@ -2,13 +2,13 @@ import {Component,Inject}     from 'angular2/core';
 import {RouteParams,Router} from 'angular2/router';
 import {NewsService} from './news.service';
 import {NewsBaseComponent} from './news-base.component';
-import {DateMomentPipe} from '../pipes/date-moment.pipe';
+//import {DateMomentPipe} from '../pipes/date-moment.pipe';
 import {PageHeaderComponent} from '../common/page-header.component';
 
 @Component({
     templateUrl:  'app/news/news-detail.component.html',
     providers: [NewsService,RouteParams,Router],
-    pipes: [DateMomentPipe],
+    //pipes: [DateMomentPipe],
     directives: [PageHeaderComponent]
 })
 export class NewsDetailComponent extends NewsBaseComponent{
