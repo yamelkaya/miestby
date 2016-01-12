@@ -1,4 +1,4 @@
-import {Component, Inject} from 'angular2/core';
+import {Component, Input} from 'angular2/core';
 import {Http, BaseRequestOptions, Request} from 'angular2/http';
 
 @Component({
@@ -9,18 +9,27 @@ import {Http, BaseRequestOptions, Request} from 'angular2/http';
 export class ListPagerComponent{
     private _http;
 
+    @Input()
     currentPage;
-    pagesTotal;
-    items;
+
+    @Input()
     itemsPerPage;
-    itemsTotal;
+
+    @Input()
     source;
+
+    itemsTotal;
+
     pages;
+
+    pagesTotal;
+
+    items;
 
     onItemsLoad;
     onPageChange;
 
-    constructor(http){
+    constructor(http: Http){
         this._http = http;
         this._defaults();
     }
@@ -29,15 +38,19 @@ export class ListPagerComponent{
         this._init();
     }
 
+    ngOnChanges(){
+        this._loadItems();
+    }
+
     goToNext(){
-        if (this.currentPage < this.pagesTotal){
+        if (this._canGoToNext()){
             this.currentPage ++;
             this._onPageChange();
         }
     }
 
     goToPrev(){
-        if (this.currentPage > 1) {
+        if (this._canGoToPrev()) {
             this.currentPage --;
             this._onPageChange();
         }
@@ -114,6 +127,14 @@ export class ListPagerComponent{
 
     _isPageValid(page){
         return Number.isInteger(page) && 1 <= page && page <= this.pagesTotal;
+    }
+
+    _canGoToPrev(){
+        return this.currentPage > 1;
+    }
+
+    _canGoToNext(){
+        return this.currentPage < this.pagesTotal;
     }
 
     _generatePages(start,end){

@@ -1,5 +1,7 @@
 import {Pipe} from "angular2/core";
-import moment = require('moment');
+import m = require("moment")
+var moment : moment.MomentStatic;
+moment = (m as any).default || m;
 
 @Pipe({
     name : "dateMoment"

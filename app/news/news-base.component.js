@@ -35,3 +35,4 @@ System.register([], function(exports_1) {
         }
     }
 });
+//# sourceMappingURL=news-base.component.js.map

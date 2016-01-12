@@ -1,7 +1,13 @@
 <ul class="pagination">
-    <li class="disabled"><a href="#">&laquo;</a></li>
-    <li *ngFor="#page of pages" class="btn btn-primary btn-sm" (click)="goToPage(page)" [ngClass]="{active: _isCurrentPage(page)}">
-        <a href="#">{{page}}</a>
+    <li [ngClass]="{disabled: !_canGoToPrev()}">
+        <a (click)="goToPrev()">Назад</a>
     </li>
-    <li><a href="#">&raquo;</a></li>
+
+    <li *ngFor="#page of pages" [ngClass]="{active: _isCurrentPage(page)}">
+        <a (click)="goToPage(page)">{{page}}</a>
+    </li>
+
+    <li [ngClass]="{disabled: !_canGoToNext()}">
+        <a (click)="goToNext()">Вперед</a>
+    </li>
 </ul>

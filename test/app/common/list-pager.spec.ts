@@ -1,11 +1,9 @@
-System.register([], function(exports_1) {
-    return {
-        setters:[],
-        execute: function() {
-            it('true is true', function () { expect(true).toEqual(true); });
-        }
-    }
-});
+import {ListPagerComponent} from '../../../app/common/list-pager.component';
+import {MockBackend} from 'angular2/http/testing';
+import {Injector,provide} from 'angular2/core';
+import {Http, Response, BaseResponseOptions, Request, RequestOptions,RequestMethod,BaseRequestOptions} from 'angular2/http';
+
+it('true is true', function(){ expect(true).toEqual(true); });
 //describe('ListPager', () => {
 //    let http, backend, connection;
 //    let responseBody = {
@@ -621,5 +619,4 @@ System.register([], function(exports_1) {
 //                body: responseBody
 //            })));
 //    });
-//}); 
-//# sourceMappingURL=list-pager.spec.js.map
+//});

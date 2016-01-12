@@ -29,14 +29,17 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
                 ListPagerComponent.prototype.ngOnInit = function () {
                     this._init();
                 };
+                ListPagerComponent.prototype.ngOnChanges = function () {
+                    this._loadItems();
+                };
                 ListPagerComponent.prototype.goToNext = function () {
-                    if (this.currentPage < this.pagesTotal) {
+                    if (this._canGoToNext()) {
                         this.currentPage++;
                         this._onPageChange();
                     }
                 };
                 ListPagerComponent.prototype.goToPrev = function () {
-                    if (this.currentPage > 1) {
+                    if (this._canGoToPrev()) {
                         this.currentPage--;
                         this._onPageChange();
                     }
@@ -103,6 +106,12 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
                 ListPagerComponent.prototype._isPageValid = function (page) {
                     return Number.isInteger(page) && 1 <= page && page <= this.pagesTotal;
                 };
+                ListPagerComponent.prototype._canGoToPrev = function () {
+                    return this.currentPage > 1;
+                };
+                ListPagerComponent.prototype._canGoToNext = function () {
+                    return this.currentPage < this.pagesTotal;
+                };
                 ListPagerComponent.prototype._generatePages = function (start, end) {
                     var list = [];
                     for (var i = start; i <= end; i++) {
@@ -110,12 +119,24 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
                     }
                     return list;
                 };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], ListPagerComponent.prototype, "currentPage");
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], ListPagerComponent.prototype, "itemsPerPage");
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], ListPagerComponent.prototype, "source");
                 ListPagerComponent = __decorate([
                     core_1.Component({
                         selector: 'list-pager',
                         templateUrl: 'app/common/list-pager.component.html',
                     }), 
-                    __metadata('design:paramtypes', [Object])
+                    __metadata('design:paramtypes', [http_1.Http])
                 ], ListPagerComponent);
                 return ListPagerComponent;
             })();

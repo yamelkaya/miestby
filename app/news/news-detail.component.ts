@@ -2,13 +2,12 @@ import {Component,Inject}     from 'angular2/core';
 import {RouteParams,Router} from 'angular2/router';
 import {NewsService} from './news.service';
 import {NewsBaseComponent} from './news-base.component';
-//import {DateMomentPipe} from '../pipes/date-moment.pipe';
+import {DateMomentPipe} from '../pipes/date-moment.pipe';
 import {PageHeaderComponent} from '../common/page-header.component';
 
 @Component({
     templateUrl:  'app/news/news-detail.component.html',
-    providers: [NewsService,RouteParams,Router],
-    //pipes: [DateMomentPipe],
+    pipes: [DateMomentPipe],
     directives: [PageHeaderComponent]
 })
 export class NewsDetailComponent extends NewsBaseComponent{
@@ -20,7 +19,7 @@ export class NewsDetailComponent extends NewsBaseComponent{
     get item() {return this._item;}
     set item(value) {this._item = value;}
 
-    constructor(newsService,routeParams,router){
+    constructor(newsService: NewsService,routeParams : RouteParams,router : Router){
         super(router);
 
         this._newsService = newsService;
@@ -38,7 +37,7 @@ export class NewsDetailComponent extends NewsBaseComponent{
         this.item = item;
         this._setHeader(item.title,[
             {
-                title: 'Редактрировать',
+                title: 'Редактировать',
                 onClick: () => {this.openNewsEdit(this._id)}
             }
         ]);
