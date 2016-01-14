@@ -1,1 +1,1 @@
-{"version":3,"file":"news.model.js","sourceRoot":"","sources":["news.model.ts"],"names":["News","News.constructor"],"mappings":";;;;;YAAA;gBAAAA;gBAEAC,CAACA;gBAADD,WAACA;YAADA,CAACA,AAFD,IAEC;YAFD,uBAEC,CAAA"}
+{"version":3,"file":"news.model.js","sourceRoot":"C:/_projects/git/miestby/","sources":["app/news/news.model.ts"],"names":["News","News.constructor"],"mappings":"AAAA;IAAAA;IAEAC,CAACA;IAADD,WAACA;AAADA,CAACA,AAFD,IAEC;AAFY,YAAI,OAEhB,CAAA"}

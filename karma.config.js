@@ -5,20 +5,22 @@ module.exports = function(config) {
         frameworks: ['systemjs', 'jasmine'],
 
         plugins: ['karma-systemjs', 'karma-jasmine', 'karma-phantomjs-launcher'],
+        //plugins: ['karma-systemjs', 'karma-jasmine', 'karma-chrome-launcher'],
 
         files: [
             'test/**/*.spec.ts'
         ],
 
-        exclude: [
-            'node_modules/'
-        ],
+        //exclude: [
+        //    'node_modules/'
+        //],
 
         systemjs: {
             configFile: 'system.conf.js',
             serveFiles: [
                 'app/**/*.ts',
-                'test/**/*.ts'
+                'test/**/*.ts',
+                'node_modules/**/*'
             ],
             //config: {
             //    defaultJSExtensions: true
@@ -31,6 +33,7 @@ module.exports = function(config) {
         logLevel: config.LOG_DEBUG,
         autoWatch: false,
         browsers: ['PhantomJS'],
+        //browsers: ['Chrome'],
         singleRun: true,
         concurrency: Infinity
         //preprocessors: {

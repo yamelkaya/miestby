@@ -1,0 +1,30 @@
+import { Http } from 'angular2/http';
+export declare class ListPagerComponent {
+    private _http;
+    currentPage: any;
+    itemsPerPage: any;
+    source: any;
+    itemsTotal: any;
+    pages: any;
+    pagesTotal: any;
+    items: any;
+    onItemsLoad: any;
+    onPageChange: any;
+    constructor(http: Http);
+    ngOnInit(): void;
+    ngOnChanges(): void;
+    goToNext(): void;
+    goToPrev(): void;
+    goToPage(page: any): void;
+    filter(text: any): void;
+    _defaults(): void;
+    _init(): void;
+    _loadItems(): void;
+    _onItemsLoad(items: any, total: any): void;
+    _onPageChange(): void;
+    _isCurrentPage(page: any): boolean;
+    _isPageValid(page: any): boolean;
+    _canGoToPrev(): boolean;
+    _canGoToNext(): boolean;
+    _generatePages(start: any, end: any): any[];
+}

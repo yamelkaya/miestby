@@ -36,6 +36,7 @@
   "devDependencies": {
     "concurrently": "^1.0.0",
     "jasmine-core": "^2.4.1",
+    "jspm": "^0.16.23",
     "karma": "^0.13.17",
     "karma-browserstack-launcher": "^0.1.9",
     "karma-chrome-launcher": "^0.2.2",
@@ -51,5 +52,14 @@
     "traceur": "0.0.96",
     "tsc": "^1.20150623.0",
     "typescript": "^1.7.3"
+  },
+  "jspm": {
+    "dependencies": {},
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4",
+      "typescript": "npm:typescript@^1.7.3"
+    }
   }
 }
