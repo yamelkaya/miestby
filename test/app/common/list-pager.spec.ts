@@ -620,11 +620,6 @@
 //    //        })));
 //    //});
 //});
-
-import 'zone.js/lib/browser/zone-microtask';
-import 'reflect-metadata';
-import 'babel-polyfill';
-
 import {Injector,provide} from 'angular2/core';
 import {Http, Response, ResponseOptions, BaseRequestOptions} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
@@ -643,8 +638,8 @@ it('should get a response', () => {
         MockBackend,
         provide(Http,
             {
-                useFactory: (backend, options) => {return new Http(backend, options);},
-                deps: [MockBackend, BaseRequestOptions]
+                useFactory: (backend, options) => {return new Http(backend, new BaseRequestOptions());},
+                deps: [MockBackend]
             }
         )
     ]);

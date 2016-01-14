@@ -3,7 +3,7 @@ module.exports = function (grunt) {
         'typescript': {
             test: {
                 src: ['app/**/*.ts','test/**/*.ts'],
-                dest: 'test-build/',
+                dest: 'build/',
                 options: {
                     "emitDecoratorMetadata": true,
                     "experimentalDecorators": true,
@@ -24,5 +24,5 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-typescript');
 
-    grunt.registerTask("test-transpile", ["typescript"]);
+    grunt.registerTask("transpile", ["typescript"]);
 };

@@ -620,9 +620,6 @@
 //    //        })));
 //    //});
 //});
-require('zone.js/lib/browser/zone-microtask');
-require('reflect-metadata');
-require('babel-polyfill');
 var core_1 = require('angular2/core');
 var http_1 = require('angular2/http');
 var testing_1 = require('angular2/http/testing');
@@ -637,8 +634,8 @@ it('should get a response', function () {
     var injector = core_1.Injector.resolveAndCreate([
         testing_1.MockBackend,
         core_1.provide(http_1.Http, {
-            useFactory: function (backend, options) { return new http_1.Http(backend, options); },
-            deps: [testing_1.MockBackend, http_1.BaseRequestOptions]
+            useFactory: function (backend, options) { return new http_1.Http(backend, new http_1.BaseRequestOptions()); },
+            deps: [testing_1.MockBackend]
         })
     ]);
     var backend = injector.get(testing_1.MockBackend);

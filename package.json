@@ -19,7 +19,7 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "test": "karma start karma.config.js",
+    "test": "grunt transpile && karma start karma.config.js",
     "lite": "lite-server",
     "start": "concurrent \"npm run tsc:w\" \"npm run lite\" "
   },
