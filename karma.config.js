@@ -2,29 +2,36 @@ module.exports = function(config) {
     config.set({
         basePath: './',
 
-        frameworks: ['systemjs', 'jasmine'],
+        frameworks: ['browserify','jasmine'],
 
-        plugins: ['karma-systemjs', 'karma-jasmine', 'karma-phantomjs-launcher'],
+        plugins: ['karma-browserify','karma-jasmine', 'karma-phantomjs-launcher'],
         //plugins: ['karma-systemjs', 'karma-jasmine', 'karma-chrome-launcher'],
 
         files: [
-            'test/**/*.spec.ts'
+            'test-build/test/**/*.spec.js'
         ],
+
+        preprocessors: {
+            'test-build/test/**/*.spec.js': [ 'browserify' ]
+        },
 
         //exclude: [
         //    'node_modules/'
         //],
 
-        systemjs: {
-            configFile: 'system.conf.js',
-            serveFiles: [
-                'app/**/*.ts',
-                'test/**/*.ts',
-                'node_modules/**/*'
-            ],
-            //config: {
-            //    defaultJSExtensions: true
-            //}
+        //systemjs: {
+        //    configFile: 'system.conf.js',
+        //    serveFiles: [
+        //        'test-build/**/*.js',
+        //        'node_modules/**/*'
+        //    ],
+        //    //config: {
+        //    //    defaultJSExtensions: true
+        //    //}
+        //},
+
+        browserify: {
+            debug: true
         },
 
         reporters: ['progress'],

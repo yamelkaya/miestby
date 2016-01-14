@@ -621,11 +621,15 @@
 //    //});
 //});
 
+import 'zone.js/lib/browser/zone-microtask';
+import 'reflect-metadata';
+import 'babel-polyfill';
+
 import {Injector,provide} from 'angular2/core';
 import {Http, Response, ResponseOptions, BaseRequestOptions} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
 
-import {Hello} from 'app/testModule';
+import {Hello} from '../../../app/testModule';
 
 it('true is true', function(){
     var h = new Hello();
@@ -635,22 +639,22 @@ it('true is true', function(){
 it('should get a response', () => {
     var connection; //this will be set when a new connection is emitted from the backend.
     var text; //this will be set from mock response
-    //var injector = Injector.resolveAndCreate([
-    //    MockBackend,
-    //    provide(Http,
-    //        {
-    //            useFactory: (backend, options) => {return new Http(backend, options);},
-    //            deps: [MockBackend, BaseRequestOptions]
-    //        }
-    //    )
-    //]);
-    //var backend = injector.get(MockBackend);
-    //var http = injector.get(Http);
-    //backend.connections.subscribe(c => connection = c);
-    //http.request('something.json').subscribe(res => {
-    //    text = res.text();
-    //});
-    //connection.mockRespond(new Response(new ResponseOptions({body: 'Something'})));
-    //expect(text).toBe('Something');
+    var injector = Injector.resolveAndCreate([
+        MockBackend,
+        provide(Http,
+            {
+                useFactory: (backend, options) => {return new Http(backend, options);},
+                deps: [MockBackend, BaseRequestOptions]
+            }
+        )
+    ]);
+    var backend = injector.get(MockBackend);
+    var http = injector.get(Http);
+    backend.connections.subscribe(c => connection = c);
+    http.request('something.json').subscribe(res => {
+        text = res.text();
+    });
+    connection.mockRespond(new Response(new ResponseOptions({body: 'Something'})));
+    expect(text).toBe('Something');
 });
 
