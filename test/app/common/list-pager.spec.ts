@@ -621,11 +621,15 @@
 //    //});
 //});
 
+import 'zone.js/lib/browser/zone-microtask';
+import 'reflect-metadata';
+import 'babel-polyfill';
+
 import {Injector,provide} from 'angular2/core';
 import {Http, Response, ResponseOptions, BaseRequestOptions} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
 
-import {Hello} from 'app/testModule';
+import {Hello} from '../../../app/testModule';
 
 it('true is true', function(){
     var h = new Hello();

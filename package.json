@@ -34,10 +34,14 @@
     "moment": "^2.10.6"
   },
   "devDependencies": {
+    "babel": "^6.3.26",
+    "babel-core": "^6.4.0",
+    "babel-polyfill": "^6.3.14",
     "concurrently": "^1.0.0",
     "jasmine-core": "^2.4.1",
     "jspm": "^0.16.23",
     "karma": "^0.13.17",
+    "karma-browserify": "^4.4.2",
     "karma-browserstack-launcher": "^0.1.9",
     "karma-chrome-launcher": "^0.2.2",
     "karma-jasmine": "^0.3.6",

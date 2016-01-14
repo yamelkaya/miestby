@@ -620,7 +620,10 @@
 //    //        })));
 //    //});
 //});
-var testModule_1 = require('app/testModule');
+require('zone.js/lib/browser/zone-microtask');
+require('reflect-metadata');
+require('babel-polyfill');
+var testModule_1 = require('../../../app/testModule');
 it('true is true', function () {
     var h = new testModule_1.Hello();
     expect(h instanceof testModule_1.Hello).toEqual(true);

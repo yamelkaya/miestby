@@ -2,14 +2,19 @@ module.exports = function(config) {
     config.set({
         basePath: './',
 
-        frameworks: ['systemjs', 'jasmine'],
+        frameworks: ['browserify','systemjs', 'jasmine'],
 
-        plugins: ['karma-systemjs', 'karma-jasmine', 'karma-phantomjs-launcher'],
+        plugins: ['karma-browserify','karma-systemjs', 'karma-jasmine', 'karma-phantomjs-launcher'],
         //plugins: ['karma-systemjs', 'karma-jasmine', 'karma-chrome-launcher'],
 
         files: [
-            'test/**/*.spec.ts'
+            'test/**/*.spec.js'
         ],
+
+        preprocessors: {
+            'test/**/*.spec.js': [ 'browserify' ],
+            'app/**/*.js': [ 'browserify' ]
+        },
 
         //exclude: [
         //    'node_modules/'
@@ -18,8 +23,8 @@ module.exports = function(config) {
         systemjs: {
             configFile: 'system.conf.js',
             serveFiles: [
-                'app/**/*.ts',
-                'test/**/*.ts',
+                'app/**/*.js',
+                'test/**/*.js',
                 'node_modules/**/*'
             ],
             //config: {
