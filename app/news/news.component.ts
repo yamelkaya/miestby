@@ -1,8 +1,8 @@
 import {Component}     from 'angular2/core';
 import {RouteConfig, RouterOutlet} from 'angular2/router';
 import {NewsService} from './news.service';
-import {NewsDetailComponent} from './news-detail.component';
-import {NewsListComponent} from './news-list.component';
+import {NewsDetailComponent} from './detail/news-detail.component';
+import {NewsListComponent} from './list/news-list.component';
 
 @Component({
     template:  `<router-outlet></router-outlet>`,

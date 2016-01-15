@@ -1,0 +1,15 @@
+<ng-content></ng-content>
+
+<ul class="pagination">
+    <li [ngClass]="{disabled: !_canGoToPrev()}">
+        <a (click)="goToPrev()">Назад</a>
+    </li>
+
+    <li *ngFor="#page of visiblePages" [ngClass]="{active: _isCurrentPage(page)}">
+        <a (click)="goToPage(page)">{{page}}</a>
+    </li>
+
+    <li [ngClass]="{disabled: !_canGoToNext()}">
+        <a (click)="goToNext()">Вперед</a>
+    </li>
+</ul>

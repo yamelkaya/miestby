@@ -1,4 +1,4 @@
-System.register(['../../../app/common/list-pager.component', 'angular2/http/testing', 'angular2/core', 'angular2/http'], function(exports_1) {
+System.register(['../../../app/common/list-pager/list-pager.component', 'angular2/http/testing', 'angular2/core', 'angular2/http'], function(exports_1) {
     var list_pager_component_1, testing_1, core_1, http_1;
     return {
         setters:[

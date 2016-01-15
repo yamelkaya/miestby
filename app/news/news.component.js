@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './news.service', './news-detail.component', './news-list.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './news.service', './detail/news-detail.component', './list/news-list.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
