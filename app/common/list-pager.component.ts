@@ -18,9 +18,12 @@ export class ListPagerComponent{
     @Input()
     source;
 
+    @Input()
+    visiblePagesMax;
+
     itemsTotal;
 
-    pages;
+    visiblePages;
 
     pagesTotal;
 
@@ -73,6 +76,7 @@ export class ListPagerComponent{
         this.itemsPerPage = 10;
         this.itemsTotal = 0;
         this.items = [];
+        this.visiblePagesMax = 5;
     }
 
     _init(){
@@ -106,7 +110,7 @@ export class ListPagerComponent{
         this.itemsTotal = total;
         this.items = items.slice((this.currentPage - 1)*this.itemsPerPage, this.currentPage*this.itemsPerPage);
         this.pagesTotal = Math.ceil(total/this.itemsPerPage);
-        this.pages = this._generatePages(1,this.pagesTotal);
+        this._updateVisiblePages();
 
         if (this.onItemsLoad){
             this.onItemsLoad(this.items,total);
@@ -137,11 +141,33 @@ export class ListPagerComponent{
         return this.currentPage < this.pagesTotal;
     }
 
-    _generatePages(start,end){
-        var list = [];
-        for (var i = start; i <= end; i++) {
+    _updateVisiblePages() {
+        var surroundPages = Math.floor(this.visiblePagesMax / 2);
+        this.visiblePages = this._generatePages(this.currentPage - surroundPages, this.currentPage + surroundPages);
+    }
+
+    _generatePages(start, end){
+        var list = [],
+            actualStart = start,
+            actualEnd = end;
+
+        var overflowLeft = 1 - start;
+        if (overflowLeft > 0){
+            actualStart = 1;
+            actualEnd = Math.min(actualEnd + overflowLeft, this.pagesTotal);
+        }
+        else {
+            var overflowRight = end - this.pagesTotal;
+            if (overflowRight > 0){
+                actualEnd = this.pagesTotal;
+                actualStart = Math.max(1, actualStart - overflowRight);
+            }
+        }
+
+        for (var i = actualStart; i <= actualEnd; i++) {
             list.push(i);
         }
+
         return list;
     }
 }

@@ -3,7 +3,7 @@
         <a (click)="goToPrev()">Назад</a>
     </li>
 
-    <li *ngFor="#page of pages" [ngClass]="{active: _isCurrentPage(page)}">
+    <li *ngFor="#page of visiblePages" [ngClass]="{active: _isCurrentPage(page)}">
         <a (click)="goToPage(page)">{{page}}</a>
     </li>
 
