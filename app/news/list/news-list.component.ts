@@ -3,7 +3,7 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {NewsService} from './../news.service';
 import {NewsBaseComponent} from './../news-base.component';
 import {PageHeaderComponent} from '../../common/page-header.component';
-import {ListPagerComponent} from '../../common/list-pager/list-pager.component';
+import {ListPagerComponent} from '../../common/list/list-pager.component';
 import {DateMomentPipe} from '../../pipes/date-moment.pipe';
 
 @Component({

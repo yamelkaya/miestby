@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', '../../common/list-pager/list-pager.component', '../../pipes/date-moment.pipe'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', '../../common/list/list-pager.component', '../../pipes/date-moment.pipe'], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }

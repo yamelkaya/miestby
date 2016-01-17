@@ -3,7 +3,7 @@ import {Http, BaseRequestOptions, Request} from 'angular2/http';
 
 @Component({
     selector: 'list-pager',
-    templateUrl:  'app/common/list-pager/list-pager.component.html',
+    templateUrl:  'app/common/list/list-pager.component.html',
     //inputs: ['itemsTotal','itemsPerPage','source','currentPage','onPageChange','onItemsLoad']
 })
 export class ListPagerComponent{

@@ -1,4 +1,4 @@
-import {ListPagerComponent} from '../../../app/common/list-pager/list-pager.component';
+import {ListPagerComponent} from '../../../app/common/list/list-pager.component';
 import {MockBackend} from 'angular2/http/testing';
 import {Injector,provide} from 'angular2/core';
 import {Http, Response, BaseResponseOptions, Request, RequestOptions,RequestMethod,BaseRequestOptions} from 'angular2/http';
