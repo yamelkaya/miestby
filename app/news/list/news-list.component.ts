@@ -3,12 +3,12 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {NewsService} from './../news.service';
 import {NewsBaseComponent} from './../news-base.component';
 import {PageHeaderComponent} from '../../common/page-header.component';
-import {ListPagerComponent} from '../../common/list/list-pager.component';
+import {ListComponent} from '../../common/list/list.component';
 import {DateMomentPipe} from '../../pipes/date-moment.pipe';
 
 @Component({
     templateUrl:  'app/news/list/news-list.component.html',
-    directives: [ROUTER_DIRECTIVES, PageHeaderComponent, ListPagerComponent],
+    directives: [ROUTER_DIRECTIVES, PageHeaderComponent, ListComponent],
     pipes: [DateMomentPipe]
 })
 export class NewsListComponent extends NewsBaseComponent{

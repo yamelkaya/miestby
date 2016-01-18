@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/http'], function(exports_1) {
+System.register(['angular2/core', "./list.service", './pager.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,47 +10,27 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1;
+    var core_1, list_service_1, pager_component_1;
     var ListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (http_1_1) {
-                http_1 = http_1_1;
+            function (list_service_1_1) {
+                list_service_1 = list_service_1_1;
+            },
+            function (pager_component_1_1) {
+                pager_component_1 = pager_component_1_1;
             }],
         execute: function() {
             ListComponent = (function () {
-                function ListComponent(http) {
-                    this._http = http;
+                function ListComponent(listService) {
+                    this._listService = listService;
                     this._defaults();
                 }
-                ListComponent.prototype.ngOnInit = function () {
-                    this._init();
-                };
                 ListComponent.prototype.ngOnChanges = function () {
                     this._loadItems();
-                };
-                ListComponent.prototype.goToNext = function () {
-                    if (this._canGoToNext()) {
-                        this.currentPage++;
-                        this._onPageChange();
-                    }
-                };
-                ListComponent.prototype.goToPrev = function () {
-                    if (this._canGoToPrev()) {
-                        this.currentPage--;
-                        this._onPageChange();
-                    }
-                };
-                ListComponent.prototype.goToPage = function (page) {
-                    if (!this._isCurrentPage(page) && this._isPageValid(page)) {
-                        this.currentPage = page;
-                        this._onPageChange();
-                    }
-                };
-                ListComponent.prototype.filter = function (text) {
                 };
                 ListComponent.prototype._defaults = function () {
                     this.currentPage = 1;
@@ -60,81 +40,18 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
                     this.items = [];
                     this.visiblePagesMax = 5;
                 };
-                ListComponent.prototype._init = function () {
-                    this._loadItems();
-                };
                 ListComponent.prototype._loadItems = function () {
                     var _this = this;
-                    if (!this.source)
-                        return;
-                    if (this.source instanceof Array) {
-                        this._onItemsLoad(this.source, this.source.length);
-                    }
-                    else if (this.source instanceof http_1.Request) {
-                        this.source.headers.set('total', true);
-                        this._http.request(this.source).subscribe(function (res) {
-                            if (res.statusText == 'Ok') {
-                                var data = res.json();
-                                _this._onItemsLoad(data.items, data.total);
-                            }
-                            else {
-                                throw Error(res.text());
-                            }
-                        });
-                    }
-                    else {
-                        throw Error(this.source + " is unknown source type");
-                    }
+                    this._listService.loadPage(this.source, this.currentPage, this.itemsPerPage).subscribe(function (page) {
+                        _this._onItemsLoad(page);
+                    }, this);
                 };
-                ListComponent.prototype._onItemsLoad = function (items, total) {
-                    this.itemsTotal = total;
-                    this.items = items.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
-                    this.pagesTotal = Math.ceil(total / this.itemsPerPage);
-                    this._updateVisiblePages();
+                ListComponent.prototype._onItemsLoad = function (page) {
+                    this.itemsTotal = page.total;
+                    this.items = page.items;
                     if (this.onItemsLoad) {
-                        this.onItemsLoad(this.items, total);
+                        this.onItemsLoad(page);
                     }
-                };
-                ListComponent.prototype._onPageChange = function () {
-                    this._loadItems();
-                    if (this.onPageChange) {
-                        this.onPageChange(this.currentPage);
-                    }
-                };
-                ListComponent.prototype._isCurrentPage = function (page) {
-                    return page == this.currentPage;
-                };
-                ListComponent.prototype._isPageValid = function (page) {
-                    return Number.isInteger(page) && 1 <= page && page <= this.pagesTotal;
-                };
-                ListComponent.prototype._canGoToPrev = function () {
-                    return this.currentPage > 1;
-                };
-                ListComponent.prototype._canGoToNext = function () {
-                    return this.currentPage < this.pagesTotal;
-                };
-                ListComponent.prototype._updateVisiblePages = function () {
-                    var surroundPages = Math.floor(this.visiblePagesMax / 2);
-                    this.visiblePages = this._generatePages(this.currentPage - surroundPages, this.currentPage + surroundPages);
-                };
-                ListComponent.prototype._generatePages = function (start, end) {
-                    var list = [], actualStart = start, actualEnd = end;
-                    var overflowLeft = 1 - start;
-                    if (overflowLeft > 0) {
-                        actualStart = 1;
-                        actualEnd = Math.min(actualEnd + overflowLeft, this.pagesTotal);
-                    }
-                    else {
-                        var overflowRight = end - this.pagesTotal;
-                        if (overflowRight > 0) {
-                            actualEnd = this.pagesTotal;
-                            actualStart = Math.max(1, actualStart - overflowRight);
-                        }
-                    }
-                    for (var i = actualStart; i <= actualEnd; i++) {
-                        list.push(i);
-                    }
-                    return list;
                 };
                 __decorate([
                     core_1.Input(), 
@@ -152,6 +69,21 @@ System.register(['angular2/core', 'angular2/http'], function(exports_1) {
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], ListComponent.prototype, "visiblePagesMax");
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], ListComponent.prototype, "onItemsLoad");
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], ListComponent.prototype, "onPageChange");
+                ListComponent = __decorate([
+                    core_1.Component({
+                        providers: [list_service_1.ListService],
+                        directives: [pager_component_1.Pager]
+                    }), 
+                    __metadata('design:paramtypes', [list_service_1.ListService])
+                ], ListComponent);
                 return ListComponent;
             })();
             exports_1("ListComponent", ListComponent);

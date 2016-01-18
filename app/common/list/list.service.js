@@ -1,13 +1,13 @@
-System.register(['angular2/http', 'rx'], function(exports_1) {
-    var http_1, rx_1;
+System.register(['angular2/http', 'rxjs/Observable'], function(exports_1) {
+    var http_1, Observable_1;
     var Page, ListService;
     return {
         setters:[
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (rx_1_1) {
-                rx_1 = rx_1_1;
+            function (Observable_1_1) {
+                Observable_1 = Observable_1_1;
             }],
         execute: function() {
             Page = (function () {
@@ -38,7 +38,7 @@ System.register(['angular2/http', 'rx'], function(exports_1) {
                 ListService.prototype._loadPageClient = function (source, page, count) {
                     var total = source.length;
                     var items = source.slice((page - 1) * count, page * count);
-                    return rx_1.Observable.return(new Page(items, total));
+                    return Observable_1.Observable.of(new Page(items, total));
                 };
                 ListService.prototype._loadPageServer = function (source, page, count) {
                     source.headers.set('total', 'true');
@@ -47,10 +47,10 @@ System.register(['angular2/http', 'rx'], function(exports_1) {
                     return this._http.request(source).flatMap(function (res) {
                         if (res.statusText == 'Ok') {
                             var data = res.json();
-                            return rx_1.Observable.return(new Page(data.items, data.total));
+                            return Observable_1.Observable.of(new Page(data.items, data.total));
                         }
                         else {
-                            return rx_1.Observable.return(new Page([], 0));
+                            return Observable_1.Observable.of(new Page([], 0));
                         }
                     });
                 };

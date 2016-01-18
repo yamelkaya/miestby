@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', '../../common/list/list-pager.component', '../../pipes/date-moment.pipe'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', '../../common/list/list.component', '../../pipes/date-moment.pipe'], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,7 +15,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, news_service_1, news_base_component_1, page_header_component_1, list_pager_component_1, date_moment_pipe_1;
+    var core_1, router_1, news_service_1, news_base_component_1, page_header_component_1, list_component_1, date_moment_pipe_1;
     var NewsListComponent;
     return {
         setters:[
@@ -34,8 +34,8 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
             function (page_header_component_1_1) {
                 page_header_component_1 = page_header_component_1_1;
             },
-            function (list_pager_component_1_1) {
-                list_pager_component_1 = list_pager_component_1_1;
+            function (list_component_1_1) {
+                list_component_1 = list_component_1_1;
             },
             function (date_moment_pipe_1_1) {
                 date_moment_pipe_1 = date_moment_pipe_1_1;
@@ -63,7 +63,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
                 NewsListComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/news/list/news-list.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES, page_header_component_1.PageHeaderComponent, list_pager_component_1.ListPagerComponent],
+                        directives: [router_1.ROUTER_DIRECTIVES, page_header_component_1.PageHeaderComponent, list_component_1.ListComponent],
                         pipes: [date_moment_pipe_1.DateMomentPipe]
                     }), 
                     __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router])

@@ -1,15 +1,16 @@
-import {Http, BaseRequestOptions, Request} from 'angular2/http';
-import {Observable} from 'rx';
+import {Http, Response, Request} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
 
 export class Page{
-    items: Array<any>
-    total: number
+    items: Array<any>;
+    total: number;
 
     constructor(items,total){
         this.items = items;
         this.total = total;
     }
 }
+
 
 export class ListService{
     private _http : Http;
@@ -32,24 +33,24 @@ export class ListService{
         }
     }
 
-    _loadPageClient(source: Array<any>, page: number, count: number): Observable<Page>{
+    private _loadPageClient(source: Array<any>, page: number, count: number): Observable<Page>{
         let total = source.length;
         let items = source.slice((page - 1)*count, page*count);
-        return Observable.return(new Page(items, total));
+        return Observable.of(new Page(items,total));
     }
 
-    _loadPageServer(source: Request, page: number, count: number): Observable<Page>{
+    private _loadPageServer(source: Request, page: number, count: number): Observable<Page>{
         source.headers.set('total','true');
         source.headers.set('page',page.toString());
         source.headers.set('count',count.toString());
 
-        return this._http.request(source).flatMap(res => {
+        return this._http.request(source).flatMap((res: Response) => {
             if (res.statusText == 'Ok'){
                 let data = res.json();
-                return Observable.return(new Page(data.items,data.total));
+                return Observable.of(new Page(data.items,data.total));
             }
             else {
-                return Observable.return(new Page([], 0));
+                return Observable.of(new Page([],0));
             }
         });
     }
