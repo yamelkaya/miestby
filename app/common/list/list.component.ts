@@ -3,12 +3,8 @@ import {Request} from 'angular2/http';
 import {ListService} from "./list.service";
 import {Pager} from './pager.component';
 
-@Component({
-    providers: [ListService],
-    directives: [Pager]
-})
 export class ListComponent{
-    private _listService;
+    protected _listService;
 
     @Input()
     currentPage;
@@ -65,5 +61,10 @@ export class ListComponent{
         if (this.onItemsLoad){
             this.onItemsLoad(page);
         }
+    }
+
+    protected _reloadSource(source){
+        this.source = source;
+        this._loadItems();
     }
 }

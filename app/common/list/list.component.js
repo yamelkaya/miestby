@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./list.service", './pager.component'], function(exports_1) {
+System.register(['angular2/core'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,18 +10,12 @@ System.register(['angular2/core', "./list.service", './pager.component'], functi
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, list_service_1, pager_component_1;
+    var core_1;
     var ListComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (list_service_1_1) {
-                list_service_1 = list_service_1_1;
-            },
-            function (pager_component_1_1) {
-                pager_component_1 = pager_component_1_1;
             }],
         execute: function() {
             ListComponent = (function () {
@@ -53,6 +47,10 @@ System.register(['angular2/core', "./list.service", './pager.component'], functi
                         this.onItemsLoad(page);
                     }
                 };
+                ListComponent.prototype._reloadSource = function (source) {
+                    this.source = source;
+                    this._loadItems();
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
@@ -77,13 +75,6 @@ System.register(['angular2/core', "./list.service", './pager.component'], functi
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], ListComponent.prototype, "onPageChange");
-                ListComponent = __decorate([
-                    core_1.Component({
-                        providers: [list_service_1.ListService],
-                        directives: [pager_component_1.Pager]
-                    }), 
-                    __metadata('design:paramtypes', [list_service_1.ListService])
-                ], ListComponent);
                 return ListComponent;
             })();
             exports_1("ListComponent", ListComponent);

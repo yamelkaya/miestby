@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './news.service', './detail/news-detail.component', './list/news-list.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './news.service', './detail/news-detail.component', './list/news-dashboard.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") return Reflect.decorate(decorators, target, key, desc);
         switch (arguments.length) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './news.service', './detail
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, news_service_1, news_detail_component_1, news_list_component_1;
+    var core_1, router_1, news_service_1, news_detail_component_1, news_dashboard_component_1;
     var NewsComponent;
     return {
         setters:[
@@ -26,8 +26,8 @@ System.register(['angular2/core', 'angular2/router', './news.service', './detail
             function (news_detail_component_1_1) {
                 news_detail_component_1 = news_detail_component_1_1;
             },
-            function (news_list_component_1_1) {
-                news_list_component_1 = news_list_component_1_1;
+            function (news_dashboard_component_1_1) {
+                news_dashboard_component_1 = news_dashboard_component_1_1;
             }],
         execute: function() {
             NewsComponent = (function () {
@@ -40,7 +40,7 @@ System.register(['angular2/core', 'angular2/router', './news.service', './detail
                         directives: [router_1.RouterOutlet]
                     }),
                     router_1.RouteConfig([
-                        { path: '/', name: 'NewsList', component: news_list_component_1.NewsListComponent, useAsDefault: true },
+                        { path: '/', name: 'NewsList', component: news_dashboard_component_1.NewsDashboardComponent, useAsDefault: true },
                         { path: '/detail/:id', name: 'NewsDetail', component: news_detail_component_1.NewsDetailComponent },
                         { path: '/edit/:id', name: 'NewsEdit', component: news_detail_component_1.NewsDetailComponent }
                     ]), 
