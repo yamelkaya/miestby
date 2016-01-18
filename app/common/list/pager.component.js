@@ -63,6 +63,7 @@ System.register(['angular2/core'], function(exports_1) {
                     this.itemsTotal = 0;
                     this.itemsPerPage = 0;
                     this.currentPage = 1;
+                    this.onPageChange = new core_1.EventEmitter();
                 };
                 Pager.prototype._init = function () {
                     if (this.itemsPerPage != 0 && this.itemsTotal != 0) {
@@ -71,9 +72,7 @@ System.register(['angular2/core'], function(exports_1) {
                     }
                 };
                 Pager.prototype._onPageChange = function () {
-                    if (this.onPageChange) {
-                        this.onPageChange(this.currentPage);
-                    }
+                    this.onPageChange.emit(this.currentPage);
                 };
                 Pager.prototype._isCurrentPage = function (page) {
                     return page == this.currentPage;
@@ -113,27 +112,27 @@ System.register(['angular2/core'], function(exports_1) {
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Number)
                 ], Pager.prototype, "currentPage");
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Number)
                 ], Pager.prototype, "itemsPerPage");
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Number)
                 ], Pager.prototype, "visiblePagesMax");
                 __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
                 ], Pager.prototype, "onPageChange");
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Array)
                 ], Pager.prototype, "items");
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', Object)
+                    __metadata('design:type', Number)
                 ], Pager.prototype, "itemsTotal");
                 Pager = __decorate([
                     core_1.Component({

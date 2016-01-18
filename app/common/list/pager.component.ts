@@ -1,4 +1,4 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {Request} from 'angular2/http';
 import {ListService} from "./list.service";
 
@@ -8,22 +8,22 @@ import {ListService} from "./list.service";
 })
 export class Pager{
     @Input()
-    currentPage;
+    currentPage: number;
 
     @Input()
-    itemsPerPage;
+    itemsPerPage: number;
 
     @Input()
-    visiblePagesMax;
+    visiblePagesMax: number;
+
+    @Output()
+    onPageChange: EventEmitter<any>;
 
     @Input()
-    onPageChange;
+    items: Array<any>;
 
     @Input()
-    items;
-
-    @Input()
-    itemsTotal;
+    itemsTotal: number;
 
     get visiblePages(){
         return this._visiblePages;
@@ -72,6 +72,7 @@ export class Pager{
         this.itemsTotal = 0;
         this.itemsPerPage = 0;
         this.currentPage = 1;
+        this.onPageChange = new EventEmitter();
     }
 
     _init(){
@@ -83,9 +84,7 @@ export class Pager{
     }
 
     _onPageChange(){
-        if (this.onPageChange){
-            this.onPageChange(this.currentPage);
-        }
+        this.onPageChange.emit(this.currentPage);
     }
 
     _isCurrentPage(page){

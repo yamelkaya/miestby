@@ -1,5 +1,6 @@
+import {Injectable} from 'angular2/core';
 import {Http, Response, Request} from 'angular2/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs/Rx';
 
 export class Page{
     items: Array<any>;
@@ -11,7 +12,7 @@ export class Page{
     }
 }
 
-
+@Injectable()
 export class ListService{
     private _http : Http;
 
@@ -19,7 +20,7 @@ export class ListService{
         this._http = http;
     }
 
-    loadPage(source,page,count): Observable<Page>{
+    loadPage(source,page,count){
         if (!source) return;
 
         if (source instanceof Array){
@@ -33,13 +34,13 @@ export class ListService{
         }
     }
 
-    private _loadPageClient(source: Array<any>, page: number, count: number): Observable<Page>{
+    private _loadPageClient(source: Array<any>, page: number, count: number){
         let total = source.length;
         let items = source.slice((page - 1)*count, page*count);
         return Observable.of(new Page(items,total));
     }
 
-    private _loadPageServer(source: Request, page: number, count: number): Observable<Page>{
+    private _loadPageServer(source: Request, page: number, count: number){
         source.headers.set('total','true');
         source.headers.set('page',page.toString());
         source.headers.set('count',count.toString());

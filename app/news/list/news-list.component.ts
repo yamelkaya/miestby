@@ -16,11 +16,11 @@ import {ListService} from "../../../app/common/list/list.service";
 export class NewsListComponent extends ListComponent{
     private _newsService;
 
-
     constructor(newsService: NewsService, listService: ListService){
         super(listService);
 
         this._newsService = newsService;
+        this.itemsPerPage = 6;
     }
 
     ngOnInit(){

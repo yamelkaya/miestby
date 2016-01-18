@@ -1,34 +1,31 @@
-import {Component, Input} from 'angular2/core';
+import {Component, View, Input} from 'angular2/core';
 import {Request} from 'angular2/http';
 import {ListService} from "./list.service";
 import {Pager} from './pager.component';
 
+@Component({
+    template: '<div></div>',
+})
 export class ListComponent{
     protected _listService;
 
     @Input()
-    currentPage;
+    currentPage: number;
 
     @Input()
-    itemsPerPage;
+    itemsPerPage: number;
 
     @Input()
-    source;
+    source: any;
 
     @Input()
-    visiblePagesMax;
+    visiblePagesMax: number;
 
-    @Input()
-    onItemsLoad;
+    protected itemsTotal: number;
 
-    @Input()
-    onPageChange;
+    protected pagesTotal: number;
 
-    itemsTotal;
-
-    pagesTotal;
-
-    items;
+    protected items: Array<any>;
 
     constructor(listService: ListService){
         this._listService = listService;
@@ -57,10 +54,12 @@ export class ListComponent{
     private _onItemsLoad(page){
         this.itemsTotal = page.total;
         this.items = page.items;
+    }
 
-        if (this.onItemsLoad){
-            this.onItemsLoad(page);
-        }
+    protected _onPageChange(page){
+        this.currentPage = page;
+
+        this._loadItems();
     }
 
     protected _reloadSource(source){

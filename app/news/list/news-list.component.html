@@ -24,6 +24,6 @@
 </div>
 
 <list-pager [items]="items" [itemsTotal]="itemsTotal"
-            [itemsPerPage]="itemsPerPage" [currentPage]="currentPage" (onPageChange)="onPageChange" >
+            [itemsPerPage]="itemsPerPage" [currentPage]="currentPage" (onPageChange)="_onPageChange($event)" >
 </list-pager>
 

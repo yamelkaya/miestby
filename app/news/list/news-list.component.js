@@ -43,6 +43,7 @@ System.register(['angular2/core', './../news.service', '../../common/list/list.c
                 function NewsListComponent(newsService, listService) {
                     _super.call(this, listService);
                     this._newsService = newsService;
+                    this.itemsPerPage = 6;
                 }
                 NewsListComponent.prototype.ngOnInit = function () {
                     var _this = this;
