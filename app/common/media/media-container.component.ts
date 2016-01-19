@@ -5,44 +5,43 @@ import {MediaItemBaseComponent} from "./media-item.component";
     selector: 'media-container'
 })
 export class MediaContainerComponent{
-    private _items: MediaItemBaseComponent[];
-    private _selectedItem: MediaItemBaseComponent;
+    items: MediaItemBaseComponent[];
+    selectedItem: MediaItemBaseComponent;
+
     private _selectedIndex: number;
 
     constructor(){
-        this._items = [];
+        this.items = [];
     }
 
     addItem(mediaItem: MediaItemBaseComponent){
-        mediaItem.select.subscribe(this._onItemSelect);
+        mediaItem.select.subscribe(selectedItem => {
+            this.selectedItem = selectedItem;
+            this._selectedIndex = this.items.indexOf(this.selectedItem);
+        });
 
-        this._items.push(mediaItem);
+        this.items.push(mediaItem);
     }
 
     selectNext(){
         if (this._canSelectNext()){
-            this._selectedItem.zoomOut();
-            this._items[this._selectedIndex + 1].zoomIn();
+            this.selectedItem.zoomOut();
+            this.items[this._selectedIndex + 1].zoomIn();
         }
     }
 
     selectPrev(){
         if (this._canSelectPrev()){
-            this._selectedItem.zoomOut();
-            this._items[this._selectedIndex - 1].zoomIn();
+            this.selectedItem.zoomOut();
+            this.items[this._selectedIndex - 1].zoomIn();
         }
     }
 
     private _canSelectNext(){
-        return this._selectedIndex < this._items.length - 1;
+        return this._selectedIndex < this.items.length - 1;
     }
 
     private _canSelectPrev(){
         return this._selectedIndex > 0;
-    }
-
-    private _onItemSelect(mediaItem){
-        this._selectedItem = mediaItem;
-        this._selectedIndex = this._items.indexOf(this._selectedItem);
     }
 }

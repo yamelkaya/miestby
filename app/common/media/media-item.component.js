@@ -16,7 +16,7 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, media_model_1;
-    var MediaItemComponent, ImageItemComponent, VideoItemComponent, MediaItemBaseComponent;
+    var MediaItemBaseComponent, MediaItemComponent, ImageItemComponent, VideoItemComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -26,6 +26,42 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 media_model_1 = media_model_1_1;
             }],
         execute: function() {
+            MediaItemBaseComponent = (function () {
+                function MediaItemBaseComponent(mediaContainer) {
+                    this._defaults();
+                    if (mediaContainer) {
+                        mediaContainer.addItem(this);
+                    }
+                }
+                Object.defineProperty(MediaItemBaseComponent.prototype, "media", {
+                    get: function () {
+                        return this._media;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                MediaItemBaseComponent.prototype.ngOnChanges = function () {
+                    this._media = new media_model_1.Media(this.source);
+                };
+                MediaItemBaseComponent.prototype.zoomIn = function () {
+                    this._preview = false;
+                    this.select.emit(this);
+                };
+                MediaItemBaseComponent.prototype.zoomOut = function () {
+                    this._preview = true;
+                };
+                MediaItemBaseComponent.prototype._defaults = function () {
+                    this._preview = true;
+                    this.source = null;
+                    this.select = new core_1.EventEmitter();
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', String)
+                ], MediaItemBaseComponent.prototype, "source");
+                return MediaItemBaseComponent;
+            })();
+            exports_1("MediaItemBaseComponent", MediaItemBaseComponent);
             MediaItemComponent = (function (_super) {
                 __extends(MediaItemComponent, _super);
                 function MediaItemComponent() {
@@ -33,7 +69,8 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 }
                 MediaItemComponent = __decorate([
                     core_1.Component({
-                        selector: 'media-item'
+                        selector: 'media-item',
+                        template: 'app/common/media/media-item.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], MediaItemComponent);
@@ -47,7 +84,8 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 }
                 ImageItemComponent = __decorate([
                     core_1.Component({
-                        selector: 'image-item'
+                        selector: 'image-item',
+                        template: 'app/common/media/image-item.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ImageItemComponent);
@@ -61,36 +99,14 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 }
                 VideoItemComponent = __decorate([
                     core_1.Component({
-                        selector: 'video-item'
+                        selector: 'video-item',
+                        template: 'app/common/media/video-item.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], VideoItemComponent);
                 return VideoItemComponent;
             })(MediaItemBaseComponent);
             exports_1("VideoItemComponent", VideoItemComponent);
-            MediaItemBaseComponent = (function () {
-                function MediaItemBaseComponent(mediaContainer) {
-                    if (mediaContainer) {
-                        mediaContainer.addItem(this);
-                    }
-                }
-                MediaItemBaseComponent.prototype.ngOnChanges = function () {
-                    this._media = new media_model_1.Media(this.source);
-                };
-                MediaItemBaseComponent.prototype.zoomIn = function () {
-                    this._preview = false;
-                    this.select.emit(this);
-                };
-                MediaItemBaseComponent.prototype.zoomOut = function () {
-                    this._preview = true;
-                };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', String)
-                ], MediaItemBaseComponent.prototype, "source");
-                return MediaItemBaseComponent;
-            })();
-            exports_1("MediaItemBaseComponent", MediaItemBaseComponent);
         }
     }
 });

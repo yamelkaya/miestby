@@ -20,33 +20,33 @@ System.register(['angular2/core'], function(exports_1) {
         execute: function() {
             MediaContainerComponent = (function () {
                 function MediaContainerComponent() {
-                    this._items = [];
+                    this.items = [];
                 }
                 MediaContainerComponent.prototype.addItem = function (mediaItem) {
-                    mediaItem.select.subscribe(this._onItemSelect);
-                    this._items.push(mediaItem);
+                    var _this = this;
+                    mediaItem.select.subscribe(function (selectedItem) {
+                        _this.selectedItem = selectedItem;
+                        _this._selectedIndex = _this.items.indexOf(_this.selectedItem);
+                    });
+                    this.items.push(mediaItem);
                 };
                 MediaContainerComponent.prototype.selectNext = function () {
                     if (this._canSelectNext()) {
-                        this._selectedItem.zoomOut();
-                        this._items[this._selectedIndex + 1].zoomIn();
+                        this.selectedItem.zoomOut();
+                        this.items[this._selectedIndex + 1].zoomIn();
                     }
                 };
                 MediaContainerComponent.prototype.selectPrev = function () {
                     if (this._canSelectPrev()) {
-                        this._selectedItem.zoomOut();
-                        this._items[this._selectedIndex - 1].zoomIn();
+                        this.selectedItem.zoomOut();
+                        this.items[this._selectedIndex - 1].zoomIn();
                     }
                 };
                 MediaContainerComponent.prototype._canSelectNext = function () {
-                    return this._selectedIndex < this._items.length - 1;
+                    return this._selectedIndex < this.items.length - 1;
                 };
                 MediaContainerComponent.prototype._canSelectPrev = function () {
                     return this._selectedIndex > 0;
-                };
-                MediaContainerComponent.prototype._onItemSelect = function (mediaItem) {
-                    this._selectedItem = mediaItem;
-                    this._selectedIndex = this._items.indexOf(this._selectedItem);
                 };
                 MediaContainerComponent = __decorate([
                     core_1.Component({
