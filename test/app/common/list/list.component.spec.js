@@ -301,11 +301,11 @@ System.register(['../../../../app/common/list/list.service', '../../../../app/co
                     listComponent.currentPage = 1;
                     listComponent.itemsPerPage = 10;
                     listComponent.source = new http_1.Request({ url: 'data/news' });
-                    listComponent.onItemsLoad = function (page) {
+                    listComponent.itemsLoad.subscribe(function (page) {
                         expect(page.items.length).toBe(10);
                         expect(page.total).toBe(20);
                         done();
-                    };
+                    });
                     listComponent.ngOnChanges();
                     connection.mockRespond(new http_1.Response(new http_1.BaseResponseOptions().merge({
                         body: { items: responseBody.items.slice(0, 10), total: responseBody.total }

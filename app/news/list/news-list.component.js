@@ -1,4 +1,4 @@
-System.register(['angular2/core', './../news.service', '../../common/list/list.component', '../../common/list/pager.component', '../../pipes/date-moment.pipe', "../../../app/common/list/list.service"], function(exports_1) {
+System.register(['angular2/core', './../news.service', "../../../app/common/list/list.service", "../../../app/common/routing.service", '../../common/list/list.component', '../../common/list/pager.component', '../../pipes/date-moment.pipe'], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,7 +15,7 @@ System.register(['angular2/core', './../news.service', '../../common/list/list.c
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, news_service_1, list_component_1, pager_component_1, date_moment_pipe_1, list_service_1;
+    var core_1, news_service_1, list_service_1, routing_service_1, list_component_1, pager_component_1, date_moment_pipe_1;
     var NewsListComponent;
     return {
         setters:[
@@ -25,6 +25,12 @@ System.register(['angular2/core', './../news.service', '../../common/list/list.c
             function (news_service_1_1) {
                 news_service_1 = news_service_1_1;
             },
+            function (list_service_1_1) {
+                list_service_1 = list_service_1_1;
+            },
+            function (routing_service_1_1) {
+                routing_service_1 = routing_service_1_1;
+            },
             function (list_component_1_1) {
                 list_component_1 = list_component_1_1;
             },
@@ -33,23 +39,32 @@ System.register(['angular2/core', './../news.service', '../../common/list/list.c
             },
             function (date_moment_pipe_1_1) {
                 date_moment_pipe_1 = date_moment_pipe_1_1;
-            },
-            function (list_service_1_1) {
-                list_service_1 = list_service_1_1;
             }],
         execute: function() {
             NewsListComponent = (function (_super) {
                 __extends(NewsListComponent, _super);
-                function NewsListComponent(newsService, listService) {
+                function NewsListComponent(newsService, listService, routingService) {
                     _super.call(this, listService);
                     this._newsService = newsService;
+                    this._routingService = routingService;
                     this.itemsPerPage = 6;
                 }
                 NewsListComponent.prototype.ngOnInit = function () {
                     var _this = this;
-                    this._newsService.getNews().then(function (news) {
+                    this._newsService.getNews(null).then(function (news) {
                         _this._reloadSource(news);
                     });
+                };
+                NewsListComponent.prototype.deleteItem = function (id) {
+                };
+                NewsListComponent.prototype.editItem = function (id) {
+                    this._routingService.openNewsEdit(id);
+                };
+                NewsListComponent.prototype.addItem = function () {
+                    this._routingService.openNewsEdit(null);
+                };
+                NewsListComponent.prototype.viewItem = function (id) {
+                    this._routingService.openNewsDetails(id);
                 };
                 NewsListComponent = __decorate([
                     core_1.Component({
@@ -59,7 +74,7 @@ System.register(['angular2/core', './../news.service', '../../common/list/list.c
                         pipes: [date_moment_pipe_1.DateMomentPipe],
                         providers: [list_service_1.ListService]
                     }), 
-                    __metadata('design:paramtypes', [news_service_1.NewsService, list_service_1.ListService])
+                    __metadata('design:paramtypes', [news_service_1.NewsService, list_service_1.ListService, routing_service_1.RoutingService])
                 ], NewsListComponent);
                 return NewsListComponent;
             })(list_component_1.ListComponent);

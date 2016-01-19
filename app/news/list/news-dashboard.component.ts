@@ -4,6 +4,7 @@ import {NewsService} from './../news.service';
 import {NewsBaseComponent} from './../news-base.component';
 import {PageHeaderComponent} from '../../common/page-header.component';
 import {NewsListComponent} from './news-list.component';
+import {RoutingService} from "../../common/routing.service";
 
 @Component({
     templateUrl:  'app/news/list/news-dashboard.component.html',
@@ -14,8 +15,8 @@ export class NewsDashboardComponent extends NewsBaseComponent{
 
     news;
 
-    constructor(newsService : NewsService, router : Router){
-        super(router);
+    constructor(newsService : NewsService, routingService : RoutingService){
+        super(routingService);
 
         this._newsService = newsService;
         this._setHeader(
@@ -23,7 +24,7 @@ export class NewsDashboardComponent extends NewsBaseComponent{
             [
                 {
                     title: 'Добавить свежую!',
-                    onClick: this.openNewsEdit
+                    onClick: this._routingService.openNewsEdit
                 }
             ]);
     }

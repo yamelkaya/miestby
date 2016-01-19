@@ -375,13 +375,13 @@ describe('ListComponent', () => {
         listComponent.currentPage = 1;
         listComponent.itemsPerPage = 10;
         listComponent.source = new Request({url: 'data/news'});
-        listComponent.onItemsLoad = (page) => {
+        listComponent.itemsLoad.subscribe((page) => {
 
             expect(page.items.length).toBe(10);
             expect(page.total).toBe(20);
 
             done();
-        };
+        });
 
         listComponent.ngOnChanges();
 

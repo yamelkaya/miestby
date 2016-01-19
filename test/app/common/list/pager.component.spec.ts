@@ -539,10 +539,10 @@ describe('Pager', () => {
 
         it('should increase current page if have more pages', done => {
             listPager.currentPage = 5;
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(page).toEqual(6);
                 done();
-            };
+            });
             listPager.ngOnChanges();
 
             listPager.goToNext();
@@ -550,10 +550,10 @@ describe('Pager', () => {
 
         it('should not increase current page if no more pages', done => {
             listPager.currentPage = 10;
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(true).toEqual(false);
                 done();
-            };
+            });
             listPager.ngOnChanges();
 
             listPager.goToNext();
@@ -574,10 +574,10 @@ describe('Pager', () => {
 
         it('should decrease current page if have more pages', done => {
             listPager.currentPage = 5;
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(page).toEqual(4);
                 done();
-            };
+            });
             listPager.ngOnChanges();
 
             listPager.goToPrev();
@@ -585,10 +585,10 @@ describe('Pager', () => {
 
         it('should not decrease current page if no more pages', done => {
             listPager.currentPage = 1;
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(true).toEqual(false);
                 done();
-            };
+            });
             listPager.ngOnChanges();
 
             listPager.goToPrev();
@@ -611,19 +611,19 @@ describe('Pager', () => {
         });
 
         it('should set current page if page is valid', done => {
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(page).toEqual(7);
                 done();
-            };
+            });
 
             listPager.goToPage(7);
         });
 
         it('should not set current page is greater then right bound', done => {
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(true).toEqual(false);
                 done();
-            };
+            });
 
             listPager.goToPage(11);
 
@@ -632,10 +632,10 @@ describe('Pager', () => {
         });
 
         it('should not set current page is less then left bound', done => {
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(true).toEqual(false);
                 done();
-            };
+            });
 
             listPager.goToPage(0);
 
@@ -644,10 +644,10 @@ describe('Pager', () => {
         });
 
         it('should not set current page is not a number', done => {
-            listPager.onPageChange = page => {
+            listPager.onPageChange.subscribe(page => {
                 expect(true).toEqual(false);
                 done();
-            };
+            });
 
             listPager.goToPage('a');
 

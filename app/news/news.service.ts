@@ -1,9 +1,13 @@
 import {Injectable} from 'angular2/core';
+import {Router} from 'angular2/router'
 
 @Injectable()
 export class NewsService {
     private _news;
-    constructor (){
+    private _router: Router;
+
+    constructor (router: Router){
+        this._router = router;
         this._news = [
             {
                 _id: 1,

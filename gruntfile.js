@@ -1,5 +1,8 @@
 module.exports = function (grunt) {
     grunt.initConfig({
+        'clean': {
+            'test': "build"
+        },
         'typescript': {
             test: {
                 src: ['app/**/*.ts','test/**/*.ts'],
@@ -22,7 +25,8 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-typescript');
 
-    grunt.registerTask("transpile", ["typescript"]);
+    grunt.registerTask("transpile", ["clean","typescript"]);
 };

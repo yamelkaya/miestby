@@ -4,9 +4,9 @@ System.register([], function(exports_1) {
         setters:[],
         execute: function() {
             NewsBaseComponent = (function () {
-                function NewsBaseComponent(router) {
-                    this._router = router;
+                function NewsBaseComponent(routingService) {
                     this.header = {};
+                    this._routingService = routingService;
                 }
                 Object.defineProperty(NewsBaseComponent.prototype, "header", {
                     get: function () { return this._header; },
@@ -14,15 +14,6 @@ System.register([], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
-                NewsBaseComponent.prototype.openNewsEdit = function (id) {
-                    this._navigate('NewsEdit', id ? { id: id } : undefined);
-                };
-                NewsBaseComponent.prototype.openNewsDetails = function (id) {
-                    this._navigate('NewsDetail', id ? { id: id } : undefined);
-                };
-                NewsBaseComponent.prototype._navigate = function (routeName, params) {
-                    this._router.navigate([routeName, params]);
-                };
                 NewsBaseComponent.prototype._setHeader = function (title, controls) {
                     this.header = {
                         title: title,

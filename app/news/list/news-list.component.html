@@ -1,5 +1,5 @@
 <div class="list row">
-    <div class="list-item col-lg-6 col-sm-12" *ngFor="#item of items">
+    <div class="list-item col-lg-6 col-sm-12" *ngFor="#item of _items">
         <div class="well">
             <div class="row">
                 <div class="col-lg-6">
@@ -8,14 +8,14 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <a class="h4" (click)="openNewsDetails(item._id)">{{item.title}}</a>
+                    <a class="h4" (click)="viewItem(item._id)">{{item.title}}</a>
                     <div class="small text-muted">Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}</div>
                     <div class="details small">
                         {{item.titleDetails}}
                     </div>
                     <div class="list-item-button-container text-right">
-                        <button class="btn btn-primary btn-sm" (click)="openNewsEdit(item._id)">Редактировать</button>
-                        <button class="btn btn-primary btn-sm">Удалить</button>
+                        <button class="btn btn-primary btn-sm" (click)="editItem(item._id)">Редактировать</button>
+                        <button class="btn btn-primary btn-sm" (click)="deleteItem(item._id)">Удалить</button>
                     </div>
                 </div>
             </div>
@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<list-pager [items]="items" [itemsTotal]="itemsTotal"
+<list-pager [items]="_items" [itemsTotal]="_itemsTotal"
             [itemsPerPage]="itemsPerPage" [currentPage]="currentPage" (onPageChange)="_onPageChange($event)" >
 </list-pager>
 

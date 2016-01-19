@@ -26,26 +26,30 @@ System.register(['angular2/core', "./list.service"], function(exports_1) {
                     this._listService = listService;
                     this._defaults();
                 }
+                Object.defineProperty(ListComponent.prototype, "items", {
+                    get: function () {
+                        return this._items;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(ListComponent.prototype, "itemsTotal", {
+                    get: function () {
+                        return this._itemsTotal;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
                 ListComponent.prototype.ngOnChanges = function () {
                     this._loadItems();
                 };
                 ListComponent.prototype._defaults = function () {
                     this.currentPage = 1;
-                    this.pagesTotal = 0;
                     this.itemsPerPage = 10;
-                    this.itemsTotal = 0;
-                    this.items = [];
+                    this._itemsTotal = 0;
+                    this._items = [];
                     this.visiblePagesMax = 5;
-                };
-                ListComponent.prototype._loadItems = function () {
-                    var _this = this;
-                    this._listService.loadPage(this.source, this.currentPage, this.itemsPerPage).subscribe(function (page) {
-                        _this._onItemsLoad(page);
-                    }, this);
-                };
-                ListComponent.prototype._onItemsLoad = function (page) {
-                    this.itemsTotal = page.total;
-                    this.items = page.items;
+                    this.itemsLoad = new core_1.EventEmitter();
                 };
                 ListComponent.prototype._onPageChange = function (page) {
                     this.currentPage = page;
@@ -54,6 +58,17 @@ System.register(['angular2/core', "./list.service"], function(exports_1) {
                 ListComponent.prototype._reloadSource = function (source) {
                     this.source = source;
                     this._loadItems();
+                };
+                ListComponent.prototype._loadItems = function () {
+                    var _this = this;
+                    this._listService.loadPage(this.source, this.currentPage, this.itemsPerPage).subscribe(function (page) {
+                        _this._onItemsLoad(page);
+                    }, this);
+                };
+                ListComponent.prototype._onItemsLoad = function (page) {
+                    this._itemsTotal = page.total;
+                    this._items = page.items;
+                    this.itemsLoad.emit(page);
                 };
                 __decorate([
                     core_1.Input(), 
@@ -71,6 +86,10 @@ System.register(['angular2/core', "./list.service"], function(exports_1) {
                     core_1.Input(), 
                     __metadata('design:type', Number)
                 ], ListComponent.prototype, "visiblePagesMax");
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], ListComponent.prototype, "itemsLoad");
                 ListComponent = __decorate([
                     core_1.Component({
                         template: '<div></div>',

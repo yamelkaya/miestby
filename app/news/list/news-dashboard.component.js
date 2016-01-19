@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', './news-list.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './../news.service', './../news-base.component', '../../common/page-header.component', './news-list.component', "../../common/routing.service"], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,7 +15,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, news_service_1, news_base_component_1, page_header_component_1, news_list_component_1;
+    var core_1, router_1, news_service_1, news_base_component_1, page_header_component_1, news_list_component_1, routing_service_1;
     var NewsDashboardComponent;
     return {
         setters:[
@@ -36,17 +36,20 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
             },
             function (news_list_component_1_1) {
                 news_list_component_1 = news_list_component_1_1;
+            },
+            function (routing_service_1_1) {
+                routing_service_1 = routing_service_1_1;
             }],
         execute: function() {
             NewsDashboardComponent = (function (_super) {
                 __extends(NewsDashboardComponent, _super);
-                function NewsDashboardComponent(newsService, router) {
-                    _super.call(this, router);
+                function NewsDashboardComponent(newsService, routingService) {
+                    _super.call(this, routingService);
                     this._newsService = newsService;
                     this._setHeader('Новости', [
                         {
                             title: 'Добавить свежую!',
-                            onClick: this.openNewsEdit
+                            onClick: this._routingService.openNewsEdit
                         }
                     ]);
                 }
@@ -55,7 +58,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', './../
                         templateUrl: 'app/news/list/news-dashboard.component.html',
                         directives: [router_1.ROUTER_DIRECTIVES, page_header_component_1.PageHeaderComponent, news_list_component_1.NewsListComponent]
                     }), 
-                    __metadata('design:paramtypes', [news_service_1.NewsService, router_1.Router])
+                    __metadata('design:paramtypes', [news_service_1.NewsService, routing_service_1.RoutingService])
                 ], NewsDashboardComponent);
                 return NewsDashboardComponent;
             })(news_base_component_1.NewsBaseComponent);

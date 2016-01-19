@@ -1,4 +1,4 @@
-import {Component, View, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 import {Request} from 'angular2/http';
 import {ListService} from "./list.service";
 import {Pager} from './pager.component';
@@ -7,8 +7,6 @@ import {Pager} from './pager.component';
     template: '<div></div>',
 })
 export class ListComponent{
-    protected _listService;
-
     @Input()
     currentPage: number;
 
@@ -21,11 +19,22 @@ export class ListComponent{
     @Input()
     visiblePagesMax: number;
 
-    protected itemsTotal: number;
+    @Output()
+    itemsLoad: EventEmitter<any>;
 
-    protected pagesTotal: number;
+    get items(){
+        return this._items;
+    }
 
-    protected items: Array<any>;
+    get itemsTotal(){
+        return this._itemsTotal;
+    }
+
+    protected _listService;
+
+    protected _itemsTotal: number;
+
+    protected _items: Array<any>;
 
     constructor(listService: ListService){
         this._listService = listService;
@@ -36,24 +45,13 @@ export class ListComponent{
         this._loadItems();
     }
 
-    private _defaults(){
+    protected _defaults(){
         this.currentPage = 1;
-        this.pagesTotal = 0;
         this.itemsPerPage = 10;
-        this.itemsTotal = 0;
-        this.items = [];
+        this._itemsTotal = 0;
+        this._items = [];
         this.visiblePagesMax = 5;
-    }
-
-    private _loadItems(){
-        this._listService.loadPage(this.source,this.currentPage,this.itemsPerPage).subscribe(page => {
-           this._onItemsLoad(page)
-        },this);
-    }
-
-    private _onItemsLoad(page){
-        this.itemsTotal = page.total;
-        this.items = page.items;
+        this.itemsLoad = new EventEmitter();
     }
 
     protected _onPageChange(page){
@@ -65,5 +63,18 @@ export class ListComponent{
     protected _reloadSource(source){
         this.source = source;
         this._loadItems();
+    }
+
+    private _loadItems(){
+        this._listService.loadPage(this.source,this.currentPage,this.itemsPerPage).subscribe(page => {
+           this._onItemsLoad(page)
+        },this);
+    }
+
+    private _onItemsLoad(page){
+        this._itemsTotal = page.total;
+        this._items = page.items;
+
+        this.itemsLoad.emit(page);
     }
 }

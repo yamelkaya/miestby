@@ -410,19 +410,19 @@ System.register(['../../../../app/common/list/pager.component'], function(export
                     });
                     it('should increase current page if have more pages', function (done) {
                         listPager.currentPage = 5;
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(page).toEqual(6);
                             done();
-                        };
+                        });
                         listPager.ngOnChanges();
                         listPager.goToNext();
                     });
                     it('should not increase current page if no more pages', function (done) {
                         listPager.currentPage = 10;
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(true).toEqual(false);
                             done();
-                        };
+                        });
                         listPager.ngOnChanges();
                         listPager.goToNext();
                         expect(listPager.currentPage).toBe(10);
@@ -438,19 +438,19 @@ System.register(['../../../../app/common/list/pager.component'], function(export
                     });
                     it('should decrease current page if have more pages', function (done) {
                         listPager.currentPage = 5;
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(page).toEqual(4);
                             done();
-                        };
+                        });
                         listPager.ngOnChanges();
                         listPager.goToPrev();
                     });
                     it('should not decrease current page if no more pages', function (done) {
                         listPager.currentPage = 1;
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(true).toEqual(false);
                             done();
-                        };
+                        });
                         listPager.ngOnChanges();
                         listPager.goToPrev();
                         expect(listPager.currentPage).toBe(1);
@@ -467,35 +467,35 @@ System.register(['../../../../app/common/list/pager.component'], function(export
                         listPager.ngOnChanges();
                     });
                     it('should set current page if page is valid', function (done) {
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(page).toEqual(7);
                             done();
-                        };
+                        });
                         listPager.goToPage(7);
                     });
                     it('should not set current page is greater then right bound', function (done) {
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(true).toEqual(false);
                             done();
-                        };
+                        });
                         listPager.goToPage(11);
                         expect(listPager.currentPage).toBe(1);
                         done();
                     });
                     it('should not set current page is less then left bound', function (done) {
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(true).toEqual(false);
                             done();
-                        };
+                        });
                         listPager.goToPage(0);
                         expect(listPager.currentPage).toBe(1);
                         done();
                     });
                     it('should not set current page is not a number', function (done) {
-                        listPager.onPageChange = function (page) {
+                        listPager.onPageChange.subscribe(function (page) {
                             expect(true).toEqual(false);
                             done();
-                        };
+                        });
                         listPager.goToPage('a');
                         expect(listPager.currentPage).toBe(1);
                         done();
