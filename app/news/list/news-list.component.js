@@ -1,4 +1,4 @@
-System.register(['angular2/core', './../news.service', "../../../app/common/list/list.service", "../../../app/common/routing.service", '../../common/list/list.component', '../../common/list/pager.component', '../../pipes/date-moment.pipe'], function(exports_1) {
+System.register(['angular2/core', './../news.service', "../../../app/common/list/list.service", "../../../app/common/routing.service", '../../common/list/list.component', '../../common/list/pager.component', '../../pipes/date-moment.pipe', "../../../app/common/media/media-item.component"], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,7 +15,7 @@ System.register(['angular2/core', './../news.service', "../../../app/common/list
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, news_service_1, list_service_1, routing_service_1, list_component_1, pager_component_1, date_moment_pipe_1;
+    var core_1, news_service_1, list_service_1, routing_service_1, list_component_1, pager_component_1, date_moment_pipe_1, media_item_component_1;
     var NewsListComponent;
     return {
         setters:[
@@ -39,6 +39,9 @@ System.register(['angular2/core', './../news.service', "../../../app/common/list
             },
             function (date_moment_pipe_1_1) {
                 date_moment_pipe_1 = date_moment_pipe_1_1;
+            },
+            function (media_item_component_1_1) {
+                media_item_component_1 = media_item_component_1_1;
             }],
         execute: function() {
             NewsListComponent = (function (_super) {
@@ -70,7 +73,7 @@ System.register(['angular2/core', './../news.service', "../../../app/common/list
                     core_1.Component({
                         selector: 'news-list',
                         templateUrl: 'app/news/list/news-list.component.html',
-                        directives: [list_component_1.ListComponent, pager_component_1.Pager],
+                        directives: [list_component_1.ListComponent, pager_component_1.Pager, media_item_component_1.MediaItemComponent],
                         pipes: [date_moment_pipe_1.DateMomentPipe],
                         providers: [list_service_1.ListService]
                     }), 

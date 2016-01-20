@@ -1,11 +1,9 @@
 <div class="list row">
-    <div class="list-item col-lg-6 col-sm-12" *ngFor="#item of _items">
+    <div class="list-item col-lg-6 col-sm-12 col-xs-12" *ngFor="#item of _items">
         <div class="well">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
-                    </div>
+                    <media-item [source]="item.titleMedia"></media-item>
                 </div>
                 <div class="col-lg-6">
                     <a class="h4" (click)="viewItem(item._id)">{{item.title}}</a>

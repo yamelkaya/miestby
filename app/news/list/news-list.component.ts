@@ -6,11 +6,12 @@ import {RoutingService} from "../../../app/common/routing.service";
 import {ListComponent} from '../../common/list/list.component';
 import {Pager} from '../../common/list/pager.component';
 import {DateMomentPipe} from '../../pipes/date-moment.pipe';
+import {MediaItemComponent} from "../../../app/common/media/media-item.component";
 
 @Component({
     selector: 'news-list',
     templateUrl:  'app/news/list/news-list.component.html',
-    directives: [ListComponent,Pager],
+    directives: [ListComponent,Pager,MediaItemComponent],
     pipes: [DateMomentPipe],
     providers: [ListService]
 })

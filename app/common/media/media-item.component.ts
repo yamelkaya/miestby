@@ -9,6 +9,9 @@ export class MediaItemBaseComponent{
     get media(){
         return this._media;
     }
+    get preview(){
+        return this._preview;
+    }
 
     protected _media: Media;
     protected _preview: boolean;
@@ -41,16 +44,8 @@ export class MediaItemBaseComponent{
 }
 
 @Component({
-    selector: 'media-item',
-    template: 'app/common/media/media-item.component.html'
-})
-export class MediaItemComponent extends MediaItemBaseComponent{
-
-}
-
-@Component({
     selector: 'image-item',
-    template: 'app/common/media/image-item.component.html'
+    templateUrl: 'app/common/media/image-item.component.html'
 })
 export class ImageItemComponent extends MediaItemBaseComponent{
 
@@ -58,8 +53,17 @@ export class ImageItemComponent extends MediaItemBaseComponent{
 
 @Component({
     selector: 'video-item',
-    template: 'app/common/media/video-item.component.html'
+    templateUrl: 'app/common/media/video-item.component.html'
 })
 export class VideoItemComponent extends MediaItemBaseComponent{
+
+}
+
+@Component({
+    selector: 'media-item',
+    templateUrl: 'app/common/media/media-item.component.html',
+    directives: [VideoItemComponent, ImageItemComponent]
+})
+export class MediaItemComponent extends MediaItemBaseComponent{
 
 }

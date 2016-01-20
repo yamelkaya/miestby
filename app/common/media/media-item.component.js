@@ -16,7 +16,7 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1, media_model_1;
-    var MediaItemBaseComponent, MediaItemComponent, ImageItemComponent, VideoItemComponent;
+    var MediaItemBaseComponent, ImageItemComponent, VideoItemComponent, MediaItemComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -36,6 +36,13 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 Object.defineProperty(MediaItemBaseComponent.prototype, "media", {
                     get: function () {
                         return this._media;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(MediaItemBaseComponent.prototype, "preview", {
+                    get: function () {
+                        return this._preview;
                     },
                     enumerable: true,
                     configurable: true
@@ -62,21 +69,6 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 return MediaItemBaseComponent;
             })();
             exports_1("MediaItemBaseComponent", MediaItemBaseComponent);
-            MediaItemComponent = (function (_super) {
-                __extends(MediaItemComponent, _super);
-                function MediaItemComponent() {
-                    _super.apply(this, arguments);
-                }
-                MediaItemComponent = __decorate([
-                    core_1.Component({
-                        selector: 'media-item',
-                        template: 'app/common/media/media-item.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], MediaItemComponent);
-                return MediaItemComponent;
-            })(MediaItemBaseComponent);
-            exports_1("MediaItemComponent", MediaItemComponent);
             ImageItemComponent = (function (_super) {
                 __extends(ImageItemComponent, _super);
                 function ImageItemComponent() {
@@ -85,7 +77,7 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 ImageItemComponent = __decorate([
                     core_1.Component({
                         selector: 'image-item',
-                        template: 'app/common/media/image-item.component.html'
+                        templateUrl: 'app/common/media/image-item.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], ImageItemComponent);
@@ -100,13 +92,29 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 VideoItemComponent = __decorate([
                     core_1.Component({
                         selector: 'video-item',
-                        template: 'app/common/media/video-item.component.html'
+                        templateUrl: 'app/common/media/video-item.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], VideoItemComponent);
                 return VideoItemComponent;
             })(MediaItemBaseComponent);
             exports_1("VideoItemComponent", VideoItemComponent);
+            MediaItemComponent = (function (_super) {
+                __extends(MediaItemComponent, _super);
+                function MediaItemComponent() {
+                    _super.apply(this, arguments);
+                }
+                MediaItemComponent = __decorate([
+                    core_1.Component({
+                        selector: 'media-item',
+                        templateUrl: 'app/common/media/media-item.component.html',
+                        directives: [VideoItemComponent, ImageItemComponent]
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], MediaItemComponent);
+                return MediaItemComponent;
+            })(MediaItemBaseComponent);
+            exports_1("MediaItemComponent", MediaItemComponent);
         }
     }
 });
