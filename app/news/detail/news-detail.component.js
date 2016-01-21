@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './../news.service', '../../common/routing.service', './../news-base.component', '../../pipes/date-moment.pipe', '../../common/page-header.component'], function(exports_1) {
+System.register(['angular2/core', 'angular2/router', './../news.service', '../../common/routing.service', './../news-base.component', '../../pipes/date-moment.pipe', '../../common/page-header.component', "../../common/media/media-item.component", "../../common/media/media-container.component"], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,7 +15,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', '../..
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, news_service_1, routing_service_1, news_base_component_1, date_moment_pipe_1, page_header_component_1;
+    var core_1, router_1, news_service_1, routing_service_1, news_base_component_1, date_moment_pipe_1, page_header_component_1, media_item_component_1, media_container_component_1;
     var NewsDetailComponent;
     return {
         setters:[
@@ -39,6 +39,12 @@ System.register(['angular2/core', 'angular2/router', './../news.service', '../..
             },
             function (page_header_component_1_1) {
                 page_header_component_1 = page_header_component_1_1;
+            },
+            function (media_item_component_1_1) {
+                media_item_component_1 = media_item_component_1_1;
+            },
+            function (media_container_component_1_1) {
+                media_container_component_1 = media_container_component_1_1;
             }],
         execute: function() {
             NewsDetailComponent = (function (_super) {
@@ -74,7 +80,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', '../..
                     core_1.Component({
                         templateUrl: 'app/news/detail/news-detail.component.html',
                         pipes: [date_moment_pipe_1.DateMomentPipe],
-                        directives: [page_header_component_1.PageHeaderComponent]
+                        directives: [page_header_component_1.PageHeaderComponent, media_item_component_1.MediaItemComponent, media_container_component_1.MediaContainerComponent, media_item_component_1.ImageItemComponent, media_item_component_1.VideoItemComponent]
                     }), 
                     __metadata('design:paramtypes', [news_service_1.NewsService, router_1.RouteParams, routing_service_1.RoutingService])
                 ], NewsDetailComponent);

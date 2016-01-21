@@ -1,26 +1,35 @@
 <page-header [title]="header.title" [controls]="header.controls"></page-header>
 
-<div class="details news">
-    <div class="text-muted small">
+<div class="news details">
+    <p class="text-muted">
         Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}
-    </div>
+    </p>
 
     <div class="news-text">
         <p>
-            <span class="span-50 right">
-                <span class="embed-responsive embed-responsive-4by3">
-                    <iframe [src]="item.titleMedia" class="embed-responsive-item"></iframe>
-                </span>
+            <span class="span-50 left">
+                <media-item [source]="item.titleMedia"></media-item>
             </span>
+
             {{item.titleDetails}}
         </p>
     </div>
 
-    <div class="news-photo">
-
+    <div class="news-media" *ngIf="item.images">
+        <h4>
+            Ещё фото
+        </h4>
+        <media-container class="row">
+            <image-item *ngFor="#image of item.images" [source]="image" class="col-lg-3"></image-item>
+        </media-container>
     </div>
 
-    <div class="news-video">
-
+    <div class="news-media" *ngIf="item.videos">
+        <h4>
+            Ещё видео
+        </h4>
+        <media-container class="row">
+            <video-item *ngFor="#video of item.videos" [source]="video" class="col-lg-3"></video-item>
+        </media-container>
     </div>
 </div>

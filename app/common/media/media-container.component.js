@@ -20,15 +20,25 @@ System.register(['angular2/core'], function(exports_1) {
         execute: function() {
             MediaContainerComponent = (function () {
                 function MediaContainerComponent() {
+                    this._selectedIndex = -1;
+                    this.selectedItem = null;
                     this.items = [];
                 }
-                MediaContainerComponent.prototype.addItem = function (mediaItem) {
+                MediaContainerComponent.prototype.addItem = function (item) {
                     var _this = this;
-                    mediaItem.select.subscribe(function (selectedItem) {
-                        _this.selectedItem = selectedItem;
-                        _this._selectedIndex = _this.items.indexOf(_this.selectedItem);
+                    var self = this;
+                    item.zoom.subscribe(function () {
+                        var zoomed = self.items.find(function (i) { return !i.preview; });
+                        if (zoomed) {
+                            _this.selectedItem = zoomed;
+                            _this._selectedIndex = self.items.indexOf(zoomed);
+                        }
+                        else {
+                            _this.selectedItem = null;
+                            _this._selectedIndex = -1;
+                        }
                     });
-                    this.items.push(mediaItem);
+                    this.items.push(item);
                 };
                 MediaContainerComponent.prototype.selectNext = function () {
                     if (this._canSelectNext()) {
@@ -48,9 +58,13 @@ System.register(['angular2/core'], function(exports_1) {
                 MediaContainerComponent.prototype._canSelectPrev = function () {
                     return this._selectedIndex > 0;
                 };
+                MediaContainerComponent.prototype._itemSelected = function () {
+                    return this.selectedItem != null && this.items != undefined;
+                };
                 MediaContainerComponent = __decorate([
                     core_1.Component({
-                        selector: 'media-container'
+                        selector: 'media-container',
+                        templateUrl: 'app/common/media/media-container.component.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], MediaContainerComponent);

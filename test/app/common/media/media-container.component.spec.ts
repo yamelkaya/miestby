@@ -16,7 +16,7 @@ describe('MediaContainerComponent', () => {
         let item = new MediaItemBaseComponent(container);
         expect(container.selectedItem).toBe(undefined);
 
-        item.select.subscribe(selected => {
+        item.zoom.subscribe(selected => {
             expect(container.selectedItem).toBe(item);
             done();
         });
@@ -31,7 +31,7 @@ describe('MediaContainerComponent', () => {
         let item3 = new MediaItemBaseComponent(container);
 
         beforeEach((done) => {
-            item2.select.subscribe(selected => {
+            item2.zoom.subscribe(selected => {
                 expect(container.selectedItem).toBe(item2);
                 done();
             });
@@ -40,7 +40,7 @@ describe('MediaContainerComponent', () => {
         });
 
         it('should change selected item when go next', done => {
-            item3.select.subscribe(selected => {
+            item3.zoom.subscribe(selected => {
                 expect(container.selectedItem).toBe(item3);
                 done();
             });
@@ -49,7 +49,7 @@ describe('MediaContainerComponent', () => {
         });
 
         it('should change selected item when go prev', done => {
-            item1.select.subscribe(selected => {
+            item1.zoom.subscribe(selected => {
                 expect(container.selectedItem).toBe(item1);
                 done();
             });

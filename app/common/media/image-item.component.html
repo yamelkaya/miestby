@@ -1,0 +1,20 @@
+<div class="media-preview">
+    <img [src]="media.normalizedSource" class="img-responsive"/>
+    <div class="zoom-in" (click)="zoomIn()">
+        <div>
+            Развернуть
+        </div>
+    </div>
+</div>
+
+<div class="media-zoom" *ngIf="!preview">
+    <div class="media-overlay">
+        <div class="media">
+            <img [src]="media.normalizedSource"/>
+        </div>
+
+        <div class="zoom-out" (click)="zoomOut()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </div>
+    </div>
+</div>

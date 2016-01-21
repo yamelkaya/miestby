@@ -1,7 +1,14 @@
 <div [ngSwitch]="media.type">
+    <!--youtube video-->
     <template [ngSwitchWhen]="1">
         <video-item [source]="source"></video-item>
     </template>
+
+    <!--image-->
+    <template [ngSwitchWhen]="2">
+        <image-item [source]="source"></image-item>
+    </template>
+
     <template ngSwitchDefault>
         Неизвестный источник
     </template>

@@ -19,7 +19,7 @@ System.register(["../../../../app/common/media/media-item.component", '../../../
                 });
                 it('should emit event when media is zoomed in', function (done) {
                     var item = new media_item_component_1.MediaItemBaseComponent(null);
-                    item.select.subscribe(function (res) {
+                    item.zoom.subscribe(function (res) {
                         expect(res).toBe(item);
                         done();
                     });

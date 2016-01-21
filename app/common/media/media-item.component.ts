@@ -1,11 +1,15 @@
-import {Component, Input, Output, EventEmitter} from 'angular2/core'
+import {Component, Input, Output, EventEmitter, Optional, Host} from 'angular2/core'
 import {MediaContainerComponent} from "./media-container.component";
 import {Media} from "./media.model";
 
 export class MediaItemBaseComponent{
     @Input()
     source: string;
-    select: EventEmitter<any>;
+    @Output()
+    zoom: EventEmitter<any>;
+    @Input()
+    hi;
+
     get media(){
         return this._media;
     }
@@ -16,10 +20,12 @@ export class MediaItemBaseComponent{
     protected _media: Media;
     protected _preview: boolean;
 
-    constructor(mediaContainer: MediaContainerComponent){
+    constructor(@Optional()@Host()container: MediaContainerComponent){
         this._defaults();
-        if (mediaContainer){
-            mediaContainer.addItem(this);
+
+        if (container)
+        {
+            container.addItem(this);
         }
     }
 
@@ -29,17 +35,18 @@ export class MediaItemBaseComponent{
 
     zoomIn(){
         this._preview = false;
-        this.select.emit(this);
+        this.zoom.emit(this);
     }
 
     zoomOut(){
         this._preview = true;
+        this.zoom.emit(this);
     }
 
     private _defaults() {
         this._preview = true;
         this.source = null;
-        this.select = new EventEmitter()
+        this.zoom = new EventEmitter()
     }
 }
 
@@ -48,7 +55,9 @@ export class MediaItemBaseComponent{
     templateUrl: 'app/common/media/image-item.component.html'
 })
 export class ImageItemComponent extends MediaItemBaseComponent{
-
+    constructor(@Optional()container: MediaContainerComponent){
+        super(container);
+    }
 }
 
 @Component({
@@ -56,7 +65,9 @@ export class ImageItemComponent extends MediaItemBaseComponent{
     templateUrl: 'app/common/media/video-item.component.html'
 })
 export class VideoItemComponent extends MediaItemBaseComponent{
-
+    constructor(@Optional()container: MediaContainerComponent){
+        super(container);
+    }
 }
 
 @Component({
@@ -65,5 +76,7 @@ export class VideoItemComponent extends MediaItemBaseComponent{
     directives: [VideoItemComponent, ImageItemComponent]
 })
 export class MediaItemComponent extends MediaItemBaseComponent{
-
+    constructor(@Optional()container: MediaContainerComponent){
+        super(container);
+    }
 }

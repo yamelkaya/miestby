@@ -1,0 +1,12 @@
+<ng-content></ng-content>
+
+<div class="media-controls" [hidden]="!_itemSelected()">
+    <div class="control prev" [hidden]="!_canSelectPrev()">
+        <span class="glyphicon glyphicon-triangle-left" (click)="selectPrev()"></span>
+    </div>
+
+    <div class="control next" [hidden]="!_canSelectNext()">
+        <span class="glyphicon glyphicon-triangle-right" (click)="selectNext()"></span>
+    </div>
+</div>
+

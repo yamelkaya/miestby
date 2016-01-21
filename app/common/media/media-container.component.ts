@@ -1,26 +1,39 @@
 import {Component} from 'angular2/core';
-import {MediaItemBaseComponent} from "./media-item.component";
+import {MediaItemComponent} from "./media-item.component";
+import {QueryList, Query, ContentChildren} from "angular2/core";
 
 @Component({
-    selector: 'media-container'
+    selector: 'media-container',
+    templateUrl: 'app/common/media/media-container.component.html'
 })
-export class MediaContainerComponent{
-    items: MediaItemBaseComponent[];
-    selectedItem: MediaItemBaseComponent;
+export class MediaContainerComponent {
+    items: Array<MediaItemComponent>;
+    selectedItem: MediaItemComponent;
 
     private _selectedIndex: number;
 
-    constructor(){
+    constructor() {
+        this._selectedIndex = -1;
+        this.selectedItem = null;
         this.items = [];
     }
 
-    addItem(mediaItem: MediaItemBaseComponent){
-        mediaItem.select.subscribe(selectedItem => {
-            this.selectedItem = selectedItem;
-            this._selectedIndex = this.items.indexOf(this.selectedItem);
-        });
+    addItem(item){
+        let self = this;
 
-        this.items.push(mediaItem);
+        item.zoom.subscribe(() => {
+            let zoomed = self.items.find(i => !i.preview);
+
+            if (zoomed) {
+                this.selectedItem = zoomed;
+                this._selectedIndex = self.items.indexOf(zoomed);
+            }
+            else {
+                this.selectedItem = null;
+                this._selectedIndex = -1;
+            }
+        });
+        this.items.push(item);
     }
 
     selectNext(){
@@ -43,5 +56,9 @@ export class MediaContainerComponent{
 
     private _canSelectPrev(){
         return this._selectedIndex > 0;
+    }
+
+    private _itemSelected(){
+        return this.selectedItem != null && this.items != undefined;
     }
 }

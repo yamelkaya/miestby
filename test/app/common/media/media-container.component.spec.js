@@ -20,7 +20,7 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                     var container = new media_container_component_1.MediaContainerComponent();
                     var item = new media_item_component_1.MediaItemBaseComponent(container);
                     expect(container.selectedItem).toBe(undefined);
-                    item.select.subscribe(function (selected) {
+                    item.zoom.subscribe(function (selected) {
                         expect(container.selectedItem).toBe(item);
                         done();
                     });
@@ -32,21 +32,21 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                     var item2 = new media_item_component_1.MediaItemBaseComponent(container);
                     var item3 = new media_item_component_1.MediaItemBaseComponent(container);
                     beforeEach(function (done) {
-                        item2.select.subscribe(function (selected) {
+                        item2.zoom.subscribe(function (selected) {
                             expect(container.selectedItem).toBe(item2);
                             done();
                         });
                         item2.zoomIn();
                     });
                     it('should change selected item when go next', function (done) {
-                        item3.select.subscribe(function (selected) {
+                        item3.zoom.subscribe(function (selected) {
                             expect(container.selectedItem).toBe(item3);
                             done();
                         });
                         container.selectNext();
                     });
                     it('should change selected item when go prev', function (done) {
-                        item1.select.subscribe(function (selected) {
+                        item1.zoom.subscribe(function (selected) {
                             expect(container.selectedItem).toBe(item1);
                             done();
                         });

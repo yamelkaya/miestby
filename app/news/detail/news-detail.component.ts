@@ -5,11 +5,13 @@ import {RoutingService} from '../../common/routing.service';
 import {NewsBaseComponent} from './../news-base.component';
 import {DateMomentPipe} from '../../pipes/date-moment.pipe';
 import {PageHeaderComponent} from '../../common/page-header.component';
+import {MediaItemComponent, ImageItemComponent, VideoItemComponent} from "../../common/media/media-item.component";
+import {MediaContainerComponent} from "../../common/media/media-container.component";
 
 @Component({
     templateUrl:  'app/news/detail/news-detail.component.html',
     pipes: [DateMomentPipe],
-    directives: [PageHeaderComponent]
+    directives: [PageHeaderComponent, MediaItemComponent, MediaContainerComponent, ImageItemComponent, VideoItemComponent]
 })
 export class NewsDetailComponent extends NewsBaseComponent{
     private _newsService: NewsService;

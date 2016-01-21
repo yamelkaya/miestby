@@ -1,4 +1,4 @@
-<div class="embed-responsive embed-responsive-4by3 video">
+<div class="embed-responsive embed-responsive-4by3 media-preview">
     <iframe [src]="media.normalizedSource" class="embed-responsive-item"></iframe>
     <div class="zoom-in" (click)="zoomIn()">
         <div>
@@ -8,11 +8,15 @@
 </div>
 
 <div class="media-zoom" *ngIf="!preview">
-    <div class="media-overlay" >
+    <div class="media-overlay">
         <div class="media">
             <div class="embed-responsive embed-responsive-4by3 video">
                 <iframe [src]="media.normalizedSource" class="embed-responsive-item"></iframe>
             </div>
+        </div>
+
+        <div class="zoom-out" (click)="zoomOut()">
+            <span class="glyphicon glyphicon-remove"></span>
         </div>
     </div>
 </div>

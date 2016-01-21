@@ -1,16 +1,16 @@
 <div class="list row">
-    <div class="list-item col-lg-6 col-sm-12 col-xs-12" *ngFor="#item of _items">
+    <div class="list-item col-lg-12" *ngFor="#item of _items">
         <div class="well">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <media-item [source]="item.titleMedia"></media-item>
                 </div>
-                <div class="col-lg-6">
-                    <a class="h4" (click)="viewItem(item._id)">{{item.title}}</a>
-                    <div class="small text-muted">Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}</div>
-                    <div class="details small">
+                <div class="col-lg-8">
+                    <div class="h3 list-item-heading link" (click)="viewItem(item._id)">{{item.title}}</div>
+                    <p class="small text-muted">Добавлено {{item.created | dateMoment:'DD.MM.YYYY'}}</p>
+                    <p class="details">
                         {{item.titleDetails}}
-                    </div>
+                    </p>
                     <div class="list-item-button-container text-right">
                         <button class="btn btn-primary btn-sm" (click)="editItem(item._id)">Редактировать</button>
                         <button class="btn btn-primary btn-sm" (click)="deleteItem(item._id)">Удалить</button>

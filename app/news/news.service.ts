@@ -17,7 +17,7 @@ export class NewsService {
                 titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
 Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
 Весь мультфильм обещал быть готовым к 5 января.`,
-                images: ['http://i.imgur.com/pbramIa.jpg'],
+                images: ['http://i.imgur.com/pbramIa.jpg','http://i.imgur.com/pbramIa.jpg','http://i.imgur.com/pbramIa.jpg','http://i.imgur.com/pbramIa.jpg'],
                 videos: ['https://www.youtube.com/watch?feature=player_embedded&v=eGWwHABmdOo'],
                 content: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
 Все следующие видео этого мултфильма смотрите на канале в плейлисте "Рождественское"
@@ -75,7 +75,7 @@ export class NewsService {
                 _id: 5,
                 title: 'Рождественское, часть 1',
                 titleMediaType: 0,
-                titleMedia: 'https://www.youtube.com/embed/eGWwHABmdOo',
+                titleMedia: 'http://i.imgur.com/pbramIa.jpg',
                 titleDetails: `Праздники на носу, несмотря на ноябрь. Самое время задумывать желания.
 Все следующие видео этого мультфильма смотрите на канале в плейлисте "Рождественское"
 Весь мультфильм обещал быть готовым к 5 января.`,

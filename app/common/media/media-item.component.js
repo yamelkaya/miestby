@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./media.model"], function(exports_1) {
+System.register(['angular2/core', "./media-container.component", "./media.model"], function(exports_1) {
     var __extends = (this && this.__extends) || function (d, b) {
         for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
         function __() { this.constructor = d; }
@@ -15,22 +15,28 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, media_model_1;
+    var __param = (this && this.__param) || function (paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); }
+    };
+    var core_1, media_container_component_1, media_model_1;
     var MediaItemBaseComponent, ImageItemComponent, VideoItemComponent, MediaItemComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
+            function (media_container_component_1_1) {
+                media_container_component_1 = media_container_component_1_1;
+            },
             function (media_model_1_1) {
                 media_model_1 = media_model_1_1;
             }],
         execute: function() {
             MediaItemBaseComponent = (function () {
-                function MediaItemBaseComponent(mediaContainer) {
+                function MediaItemBaseComponent(container) {
                     this._defaults();
-                    if (mediaContainer) {
-                        mediaContainer.addItem(this);
+                    if (container) {
+                        container.addItem(this);
                     }
                 }
                 Object.defineProperty(MediaItemBaseComponent.prototype, "media", {
@@ -52,65 +58,82 @@ System.register(['angular2/core', "./media.model"], function(exports_1) {
                 };
                 MediaItemBaseComponent.prototype.zoomIn = function () {
                     this._preview = false;
-                    this.select.emit(this);
+                    this.zoom.emit(this);
                 };
                 MediaItemBaseComponent.prototype.zoomOut = function () {
                     this._preview = true;
+                    this.zoom.emit(this);
                 };
                 MediaItemBaseComponent.prototype._defaults = function () {
                     this._preview = true;
                     this.source = null;
-                    this.select = new core_1.EventEmitter();
+                    this.zoom = new core_1.EventEmitter();
                 };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', String)
                 ], MediaItemBaseComponent.prototype, "source");
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', core_1.EventEmitter)
+                ], MediaItemBaseComponent.prototype, "zoom");
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], MediaItemBaseComponent.prototype, "hi");
+                MediaItemBaseComponent = __decorate([
+                    __param(0, core_1.Optional()),
+                    __param(0, core_1.Host()), 
+                    __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
+                ], MediaItemBaseComponent);
                 return MediaItemBaseComponent;
             })();
             exports_1("MediaItemBaseComponent", MediaItemBaseComponent);
             ImageItemComponent = (function (_super) {
                 __extends(ImageItemComponent, _super);
-                function ImageItemComponent() {
-                    _super.apply(this, arguments);
+                function ImageItemComponent(container) {
+                    _super.call(this, container);
                 }
                 ImageItemComponent = __decorate([
                     core_1.Component({
                         selector: 'image-item',
                         templateUrl: 'app/common/media/image-item.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
+                    }),
+                    __param(0, core_1.Optional()), 
+                    __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
                 ], ImageItemComponent);
                 return ImageItemComponent;
             })(MediaItemBaseComponent);
             exports_1("ImageItemComponent", ImageItemComponent);
             VideoItemComponent = (function (_super) {
                 __extends(VideoItemComponent, _super);
-                function VideoItemComponent() {
-                    _super.apply(this, arguments);
+                function VideoItemComponent(container) {
+                    _super.call(this, container);
                 }
                 VideoItemComponent = __decorate([
                     core_1.Component({
                         selector: 'video-item',
                         templateUrl: 'app/common/media/video-item.component.html'
-                    }), 
-                    __metadata('design:paramtypes', [])
+                    }),
+                    __param(0, core_1.Optional()), 
+                    __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
                 ], VideoItemComponent);
                 return VideoItemComponent;
             })(MediaItemBaseComponent);
             exports_1("VideoItemComponent", VideoItemComponent);
             MediaItemComponent = (function (_super) {
                 __extends(MediaItemComponent, _super);
-                function MediaItemComponent() {
-                    _super.apply(this, arguments);
+                function MediaItemComponent(container) {
+                    _super.call(this, container);
                 }
                 MediaItemComponent = __decorate([
                     core_1.Component({
                         selector: 'media-item',
                         templateUrl: 'app/common/media/media-item.component.html',
                         directives: [VideoItemComponent, ImageItemComponent]
-                    }), 
-                    __metadata('design:paramtypes', [])
+                    }),
+                    __param(0, core_1.Optional()), 
+                    __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
                 ], MediaItemComponent);
                 return MediaItemComponent;
             })(MediaItemBaseComponent);

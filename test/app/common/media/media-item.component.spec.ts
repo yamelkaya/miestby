@@ -15,7 +15,7 @@ describe('MediaItemBaseComponent', () => {
 
     it('should emit event when media is zoomed in', done => {
         let item = new MediaItemBaseComponent(null);
-        item.select.subscribe(res => {
+        item.zoom.subscribe(res => {
             expect(res).toBe(item);
             done();
         });
