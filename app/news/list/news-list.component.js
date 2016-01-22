@@ -47,17 +47,15 @@ System.register(['angular2/core', './../news.service', "../../../app/common/list
             NewsListComponent = (function (_super) {
                 __extends(NewsListComponent, _super);
                 function NewsListComponent(newsService, listService, routingService) {
+                    var _this = this;
                     _super.call(this, listService);
                     this._newsService = newsService;
                     this._routingService = routingService;
                     this.itemsPerPage = 6;
-                }
-                NewsListComponent.prototype.ngOnInit = function () {
-                    var _this = this;
-                    this._newsService.getNews(null).then(function (news) {
+                    this._newsService.getNews(null).subscribe(function (news) {
                         _this._reloadSource(news);
                     });
-                };
+                }
                 NewsListComponent.prototype.deleteItem = function (id) {
                 };
                 NewsListComponent.prototype.editItem = function (id) {

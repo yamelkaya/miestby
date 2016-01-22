@@ -2,6 +2,8 @@ import {Component, Input, Output, EventEmitter, Optional, Host} from 'angular2/c
 import {MediaContainerComponent} from "./media-container.component";
 import {Media} from "./media.model";
 
+
+
 export class MediaItemBaseComponent{
     @Input()
     source: string;
@@ -20,7 +22,8 @@ export class MediaItemBaseComponent{
     protected _media: Media;
     protected _preview: boolean;
 
-    constructor(@Optional()@Host()container: MediaContainerComponent){
+    //Media container should be injected only through final items ImageItem, VideoItem etc. - NOT container component MediaItemComponent as it depends on directives mentioned above.
+    constructor(@Optional()container: MediaContainerComponent){
         this._defaults();
 
         if (container)
@@ -50,6 +53,8 @@ export class MediaItemBaseComponent{
     }
 }
 
+
+
 @Component({
     selector: 'image-item',
     templateUrl: 'app/common/media/image-item.component.html'
@@ -59,6 +64,8 @@ export class ImageItemComponent extends MediaItemBaseComponent{
         super(container);
     }
 }
+
+
 
 @Component({
     selector: 'video-item',
@@ -70,13 +77,12 @@ export class VideoItemComponent extends MediaItemBaseComponent{
     }
 }
 
+
+
 @Component({
     selector: 'media-item',
     templateUrl: 'app/common/media/media-item.component.html',
     directives: [VideoItemComponent, ImageItemComponent]
 })
 export class MediaItemComponent extends MediaItemBaseComponent{
-    constructor(@Optional()container: MediaContainerComponent){
-        super(container);
-    }
 }

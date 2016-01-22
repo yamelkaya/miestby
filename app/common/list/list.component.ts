@@ -41,6 +41,10 @@ export class ListComponent{
         this._defaults();
     }
 
+    ngOnInit(){
+        this._loadItems();
+    }
+
     ngOnChanges(){
         this._loadItems();
     }

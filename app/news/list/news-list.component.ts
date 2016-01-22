@@ -25,13 +25,12 @@ export class NewsListComponent extends ListComponent{
         this._routingService = routingService;
 
         this.itemsPerPage = 6;
-    }
 
-    ngOnInit(){
-        this._newsService.getNews(null).then((news) => {
+        this._newsService.getNews(null).subscribe((news) => {
             this._reloadSource(news);
         });
     }
+
 
     deleteItem(id){
     }

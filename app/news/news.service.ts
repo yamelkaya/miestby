@@ -1,5 +1,7 @@
 import {Injectable} from 'angular2/core';
-import {Router} from 'angular2/router'
+import {Router} from 'angular2/router';
+import {Observable} from 'rxjs/Rx';
+
 
 @Injectable()
 export class NewsService {
@@ -121,6 +123,6 @@ export class NewsService {
 
     getNews(id) {
         let result = id ? this._news.find(n => n._id == id) : this._news;
-        return Promise.resolve(result);
+        return Observable.of(result);
     }
 }

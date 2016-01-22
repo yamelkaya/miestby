@@ -33,7 +33,7 @@ export class NewsDetailComponent extends NewsBaseComponent{
 
     ngOnInit(){
         let self = this;
-        this._newsService.getNews(this._id).then(i => self._setNewsInfo(i));
+        this._newsService.getNews(this._id).subscribe(i => self._setNewsInfo(i));
     }
 
     _setNewsInfo(item){

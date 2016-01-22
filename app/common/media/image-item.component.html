@@ -9,9 +9,10 @@
 
 <div class="media-zoom" *ngIf="!preview">
     <div class="media-overlay">
-        <div class="media">
-            <img [src]="media.normalizedSource"/>
-        </div>
+    </div>
+
+    <div class="media">
+        <img [src]="media.normalizedSource"/>
 
         <div class="zoom-out" (click)="zoomOut()">
             <span class="glyphicon glyphicon-remove"></span>

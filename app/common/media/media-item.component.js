@@ -33,6 +33,7 @@ System.register(['angular2/core', "./media-container.component", "./media.model"
             }],
         execute: function() {
             MediaItemBaseComponent = (function () {
+                //Media container should be injected only through final items ImageItem, VideoItem etc. - NOT container component MediaItemComponent as it depends on directives mentioned above.
                 function MediaItemBaseComponent(container) {
                     this._defaults();
                     if (container) {
@@ -82,8 +83,7 @@ System.register(['angular2/core', "./media-container.component", "./media.model"
                     __metadata('design:type', Object)
                 ], MediaItemBaseComponent.prototype, "hi");
                 MediaItemBaseComponent = __decorate([
-                    __param(0, core_1.Optional()),
-                    __param(0, core_1.Host()), 
+                    __param(0, core_1.Optional()), 
                     __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
                 ], MediaItemBaseComponent);
                 return MediaItemBaseComponent;
@@ -123,17 +123,16 @@ System.register(['angular2/core', "./media-container.component", "./media.model"
             exports_1("VideoItemComponent", VideoItemComponent);
             MediaItemComponent = (function (_super) {
                 __extends(MediaItemComponent, _super);
-                function MediaItemComponent(container) {
-                    _super.call(this, container);
+                function MediaItemComponent() {
+                    _super.apply(this, arguments);
                 }
                 MediaItemComponent = __decorate([
                     core_1.Component({
                         selector: 'media-item',
                         templateUrl: 'app/common/media/media-item.component.html',
                         directives: [VideoItemComponent, ImageItemComponent]
-                    }),
-                    __param(0, core_1.Optional()), 
-                    __metadata('design:paramtypes', [media_container_component_1.MediaContainerComponent])
+                    }), 
+                    __metadata('design:paramtypes', [])
                 ], MediaItemComponent);
                 return MediaItemComponent;
             })(MediaItemBaseComponent);

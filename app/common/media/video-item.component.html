@@ -9,10 +9,11 @@
 
 <div class="media-zoom" *ngIf="!preview">
     <div class="media-overlay">
-        <div class="media">
-            <div class="embed-responsive embed-responsive-4by3 video">
-                <iframe [src]="media.normalizedSource" class="embed-responsive-item"></iframe>
-            </div>
+    </div>
+
+    <div class="media video">
+        <div class="embed-responsive embed-responsive-4by3 ">
+            <iframe [src]="media.normalizedSource" class="embed-responsive-item"></iframe>
         </div>
 
         <div class="zoom-out" (click)="zoomOut()">

@@ -64,7 +64,7 @@ System.register(['angular2/core', 'angular2/router', './../news.service', '../..
                 });
                 NewsDetailComponent.prototype.ngOnInit = function () {
                     var self = this;
-                    this._newsService.getNews(this._id).then(function (i) { return self._setNewsInfo(i); });
+                    this._newsService.getNews(this._id).subscribe(function (i) { return self._setNewsInfo(i); });
                 };
                 NewsDetailComponent.prototype._setNewsInfo = function (item) {
                     var _this = this;

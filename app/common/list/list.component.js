@@ -40,6 +40,9 @@ System.register(['angular2/core', "./list.service"], function(exports_1) {
                     enumerable: true,
                     configurable: true
                 });
+                ListComponent.prototype.ngOnInit = function () {
+                    this._loadItems();
+                };
                 ListComponent.prototype.ngOnChanges = function () {
                     this._loadItems();
                 };

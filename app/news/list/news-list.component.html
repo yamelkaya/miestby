@@ -1,5 +1,5 @@
 <div class="list row">
-    <div class="list-item col-lg-12" *ngFor="#item of _items">
+    <div class="list-item col-lg-12" *ngFor="#item of items">
         <div class="well">
             <div class="row">
                 <div class="col-lg-4">
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<list-pager [items]="_items" [itemsTotal]="_itemsTotal"
+<list-pager [items]="items" [itemsTotal]="itemsTotal"
             [itemsPerPage]="itemsPerPage" [currentPage]="currentPage" (onPageChange)="_onPageChange($event)" >
 </list-pager>
 

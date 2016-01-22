@@ -63,34 +63,33 @@ p > [class*='span-'].left{
     background: rgba(0, 0, 0, 0.8);
 }
 
-.media-zoom > .media-overlay > .media{
-    position: absolute;
+/*.media-zoom > .media-overlay > .media*/
+.media-zoom > .media{
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 66%;
-    border: 0;
+    max-width: 95vmin;
     text-align: center;
+    border: 6px solid white;
+    border-bottom: 30px solid white;
+    border-top: 30px solid white;
+    overflow: visible;
+    z-index: 1002;
 }
 
-.media-zoom > .media-overlay > .zoom-out{
+/*.media-zoom > .media-overlay > .media.video*/
+.media-zoom > .media.video{
+    width: 95vmin;
+}
+
+/*.media-zoom > .media-overlay > .media .zoom-out*/
+.media-zoom > .media .zoom-out{
     position: absolute;
-    font-size: 2em;
-    color: white;
-    text-align: right;
-    width: 100%;
-    top: 0;
+    top: -26px;
+    font-size: 20px;
+    right: 0;
     cursor: pointer;
-}
-
-.media-zoom > .media-overlay > .zoom-out:hover{
-    font-size: 2.2em;
-}
-
-@media(orientation:portrait) {
-    .media-zoom > .media-overlay > .media{
-        width: 100%;
-    }
 }
 
 .list-item-heading{
@@ -118,26 +117,39 @@ p > [class*='span-'].left{
 }
 
 .media-controls{
-    color: white;
-    position: absolute;
-    z-index: 1000;
-    font-size: 2em;
+    position: fixed;
+    font-size: 24px;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    background: transparent;
+    z-index: 1000;
 }
 
 .media-controls > .control{
+    position: absolute;
+    width: 50vw;
+    z-index: 1001;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.media-controls > .control > span{
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
+    z-index: 1001;
+    color: black;
 }
 
+.media-controls > .prev > span,
 .media-controls > .prev{
     left: 0
 }
 
+.media-controls > .next > span,
 .media-controls > .next{
     right: 0
 }
