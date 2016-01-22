@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {MediaItemComponent} from "./media-item.component";
+import {MediaItemBaseComponent} from "./media-item.component";
 import {QueryList, Query, ContentChildren} from "angular2/core";
 
 @Component({
@@ -7,8 +7,8 @@ import {QueryList, Query, ContentChildren} from "angular2/core";
     templateUrl: 'app/common/media/media-container.component.html'
 })
 export class MediaContainerComponent {
-    items: Array<MediaItemComponent>;
-    selectedItem: MediaItemComponent;
+    items: Array<MediaItemBaseComponent>;
+    selectedItem: MediaItemBaseComponent;
 
     private _selectedIndex: number;
 
@@ -22,11 +22,14 @@ export class MediaContainerComponent {
         let self = this;
 
         item.zoom.subscribe(() => {
+            console.log('container');
             let zoomed = self.items.find(i => !i.preview);
 
             if (zoomed) {
                 this.selectedItem = zoomed;
                 this._selectedIndex = self.items.indexOf(zoomed);
+
+                console.log(`container ${zoomed.source}`);
             }
             else {
                 this.selectedItem = null;

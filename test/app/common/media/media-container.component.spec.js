@@ -19,10 +19,11 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                 it('should change selected item when child media zoomed in', function (done) {
                     var container = new media_container_component_1.MediaContainerComponent();
                     var item = new media_item_component_1.MediaItemBaseComponent(container);
-                    expect(container.selectedItem).toBe(undefined);
+                    expect(container.selectedItem).toBe(null);
                     item.zoom.subscribe(function (selected) {
                         expect(container.selectedItem).toBe(item);
                         done();
+                        return;
                     });
                     item.zoomIn();
                 });
@@ -31,24 +32,36 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                     var item1 = new media_item_component_1.MediaItemBaseComponent(container);
                     var item2 = new media_item_component_1.MediaItemBaseComponent(container);
                     var item3 = new media_item_component_1.MediaItemBaseComponent(container);
+                    item1.source = '1';
+                    item2.source = '2';
+                    item3.source = '3';
                     beforeEach(function (done) {
-                        item2.zoom.subscribe(function (selected) {
+                        var subscription = item2.zoom.subscribe(function (selected) {
+                            console.log("before each: subscribe value " + selected.source);
+                            console.log("before each: selected value " + container.selectedItem.source);
                             expect(container.selectedItem).toBe(item2);
                             done();
+                            subscription.unsubscribe();
                         });
                         item2.zoomIn();
                     });
                     it('should change selected item when go next', function (done) {
-                        item3.zoom.subscribe(function (selected) {
+                        var subscription = item3.zoom.subscribe(function (selected) {
                             expect(container.selectedItem).toBe(item3);
                             done();
+                            subscription.unsubscribe();
                         });
                         container.selectNext();
                     });
-                    it('should change selected item when go prev', function (done) {
-                        item1.zoom.subscribe(function (selected) {
-                            expect(container.selectedItem).toBe(item1);
-                            done();
+                    fit('should change selected item when go prev', function (done) {
+                        var subscription = item1.zoom.subscribe(function (selected) {
+                            console.log("subscribe value " + selected.source);
+                            console.log("selected value " + container.selectedItem.source);
+                            if (selected == item1) {
+                                expect(container.selectedItem).toBe(item1);
+                                done();
+                                subscription.unsubscribe();
+                            }
                         });
                         container.selectPrev();
                     });
