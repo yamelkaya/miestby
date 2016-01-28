@@ -28,14 +28,15 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                     item.zoomIn();
                 });
                 describe('with multiple items', function () {
-                    var container = new media_container_component_1.MediaContainerComponent();
-                    var item1 = new media_item_component_1.MediaItemBaseComponent(container);
-                    var item2 = new media_item_component_1.MediaItemBaseComponent(container);
-                    var item3 = new media_item_component_1.MediaItemBaseComponent(container);
-                    item1.source = '1';
-                    item2.source = '2';
-                    item3.source = '3';
+                    var container, item1, item2, item3;
                     beforeEach(function (done) {
+                        container = new media_container_component_1.MediaContainerComponent();
+                        item1 = new media_item_component_1.MediaItemBaseComponent(container);
+                        item2 = new media_item_component_1.MediaItemBaseComponent(container);
+                        item3 = new media_item_component_1.MediaItemBaseComponent(container);
+                        item1.source = '1';
+                        item2.source = '2';
+                        item3.source = '3';
                         var subscription = item2.zoom.subscribe(function (selected) {
                             expect(container.selectedItem).toBe(item2);
                             subscription.unsubscribe();
@@ -60,6 +61,16 @@ System.register(["../../../../app/common/media/media-item.component", "../../../
                             }
                         });
                         container.selectPrev();
+                    });
+                    it('should change selected item when child media zoomed out', function (done) {
+                        var subscription = item2.zoom.subscribe(function (selected) {
+                            if (selected == item2) {
+                                expect(container.selectedItem).toBe(null);
+                                subscription.unsubscribe();
+                                done();
+                            }
+                        });
+                        item2.zoomOut();
                     });
                 });
             });

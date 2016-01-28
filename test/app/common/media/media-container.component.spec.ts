@@ -27,16 +27,21 @@ describe('MediaContainerComponent', () => {
     });
 
     describe('with multiple items', () => {
-        let container = new MediaContainerComponent();
-        let item1 = new MediaItemBaseComponent(container);
-        let item2 = new MediaItemBaseComponent(container);
-        let item3 = new MediaItemBaseComponent(container);
-
-        item1.source = '1';
-        item2.source = '2';
-        item3.source = '3';
+        let container,
+            item1,
+            item2,
+            item3;
 
         beforeEach((done) => {
+            container = new MediaContainerComponent();
+            item1 = new MediaItemBaseComponent(container);
+            item2 = new MediaItemBaseComponent(container);
+            item3 = new MediaItemBaseComponent(container);
+
+            item1.source = '1';
+            item2.source = '2';
+            item3.source = '3';
+
             let subscription = item2.zoom.subscribe(selected => {
                 expect(container.selectedItem).toBe(item2);
 
@@ -70,6 +75,20 @@ describe('MediaContainerComponent', () => {
             });
 
             container.selectPrev();
+        });
+
+        it('should change selected item when child media zoomed out', done => {
+            let subscription = item2.zoom.subscribe(selected => {
+                if (selected == item2)
+                {
+                    expect(container.selectedItem).toBe(null);
+
+                    subscription.unsubscribe();
+                    done();
+                }
+            });
+
+            item2.zoomOut();
         });
     });
 });
