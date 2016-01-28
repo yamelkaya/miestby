@@ -38,13 +38,10 @@ describe('MediaContainerComponent', () => {
 
         beforeEach((done) => {
             let subscription = item2.zoom.subscribe(selected => {
-                console.log(`before each: subscribe value ${selected.source}`);
-                console.log(`before each: selected value ${container.selectedItem.source}`);
-
                 expect(container.selectedItem).toBe(item2);
-                done();
 
                 subscription.unsubscribe();
+                done();
             });
 
             item2.zoomIn();
@@ -53,25 +50,22 @@ describe('MediaContainerComponent', () => {
         it('should change selected item when go next', done => {
             let subscription = item3.zoom.subscribe(selected => {
                 expect(container.selectedItem).toBe(item3);
-                done();
 
                 subscription.unsubscribe();
+                done();
             });
 
             container.selectNext();
         });
 
-        fit('should change selected item when go prev', done => {
+        it('should change selected item when go prev', done => {
             let subscription = item1.zoom.subscribe(selected => {
-                console.log(`subscribe value ${selected.source}`);
-                console.log(`selected value ${container.selectedItem.source}`);
-
                 if (selected == item1)
                 {
                     expect(container.selectedItem).toBe(item1);
-                    done();
 
                     subscription.unsubscribe();
+                    done();
                 }
             });
 

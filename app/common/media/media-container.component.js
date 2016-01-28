@@ -28,12 +28,10 @@ System.register(['angular2/core'], function(exports_1) {
                     var _this = this;
                     var self = this;
                     item.zoom.subscribe(function () {
-                        console.log('container');
                         var zoomed = self.items.find(function (i) { return !i.preview; });
                         if (zoomed) {
                             _this.selectedItem = zoomed;
                             _this._selectedIndex = self.items.indexOf(zoomed);
-                            console.log("container " + zoomed.source);
                         }
                         else {
                             _this.selectedItem = null;

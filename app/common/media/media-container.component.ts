@@ -22,14 +22,11 @@ export class MediaContainerComponent {
         let self = this;
 
         item.zoom.subscribe(() => {
-            console.log('container');
             let zoomed = self.items.find(i => !i.preview);
 
             if (zoomed) {
                 this.selectedItem = zoomed;
                 this._selectedIndex = self.items.indexOf(zoomed);
-
-                console.log(`container ${zoomed.source}`);
             }
             else {
                 this.selectedItem = null;
