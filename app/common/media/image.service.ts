@@ -1,5 +1,5 @@
 import {Injectable} from 'angular2/core';
-import {Http,Request} from 'angular2/http';
+import {Http,Request,Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
@@ -24,7 +24,7 @@ export class ImageService{
         this._http = http;
     }
 
-    upload(imgBase64): Observable{
+    upload(imgBase64){
         this._http.post(this._imageApiPath, this._prepareImageBody(imgBase64),this._prepareImageOptions())
             .subscribe(res => {
                 if (res.statusText == 'Ok'){
@@ -38,19 +38,21 @@ export class ImageService{
     }
 
     private _prepareImageBody(imgBase64){
-        return {
+        return JSON.stringify({
             image: imgBase64,
             type: 'base64',
             album: this._albumId
-        }
+        });
     }
 
     private _prepareImageOptions() {
         return {
-            headers: {
-                'Authorization': 'Client-ID ' + this._clientId,
-                'Accept': 'application/json'
-            }
+            headers: new Headers(
+                {
+                    'Authorization': 'Client-ID ' + this._clientId,
+                    'Accept': 'application/json'
+                }
+            )
         };
     }
 }

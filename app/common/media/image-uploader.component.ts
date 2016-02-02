@@ -1,4 +1,4 @@
-import Component from "angular2/core";
+import {Component} from "angular2/core";
 import {ImageService} from "./image.service";
 
 @Component({
@@ -20,7 +20,7 @@ export class ImageUploaderComponent{
     }
 
     set source(value){
-        return this._sourceUrl = value;
+        this._sourceUrl = value;
     }
 
     private get _sourceInternal(){
