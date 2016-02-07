@@ -60,23 +60,52 @@ System.register(["angular2/core", "./image.service"], function(exports_1) {
                     configurable: true
                 });
                 ImageUploaderComponent.prototype.add = function () {
+                    this._setUploadMode();
                 };
                 ImageUploaderComponent.prototype.clear = function () {
                 };
                 ImageUploaderComponent.prototype.edit = function () {
+                    this._setUploadMode();
                 };
                 ImageUploaderComponent.prototype.save = function () {
+                    var _this = this;
                     if (this._changed) {
-                        this._imageService.upload(this._sourceBase64);
+                        return this._imageService.upload(this._sourceBase64)
+                            .subscribe(function (res) {
+                            _this.source = res.link;
+                            _this._clearBase64();
+                            _this._setPreviewMode();
+                        });
                     }
                 };
                 ImageUploaderComponent.prototype._defaults = function () {
                     this._sourceUrl = null;
                     this._sourceBase64 = null;
+                    this._setPreviewMode();
+                };
+                ImageUploaderComponent.prototype._clearBase64 = function () {
+                    this._sourceBase64 = null;
+                };
+                ImageUploaderComponent.prototype._fileSelected = function (e) {
+                    var reader = new FileReader();
+                    var self = this;
+                    reader.onloadend = function () {
+                        self._sourceBase64 = reader.result;
+                    };
+                    if (e.target.files.length > 0) {
+                        reader.readAsDataURL(e.target.files[0]);
+                    }
+                };
+                ImageUploaderComponent.prototype._setPreviewMode = function () {
+                    this._previewMode = true;
+                };
+                ImageUploaderComponent.prototype._setUploadMode = function () {
+                    this._previewMode = false;
                 };
                 ImageUploaderComponent = __decorate([
                     core_1.Component({
                         selector: 'image-upload',
+                        templateUrl: 'app/common/media/image-uploader.component.html',
                         providers: [image_service_1.ImageService]
                     }), 
                     __metadata('design:paramtypes', [image_service_1.ImageService])

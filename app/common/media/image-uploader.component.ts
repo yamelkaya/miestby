@@ -1,8 +1,10 @@
 import {Component} from "angular2/core";
+import { Observable } from 'rxjs/Rx';
 import {ImageService} from "./image.service";
 
 @Component({
     selector: 'image-upload',
+    templateUrl: 'app/common/media/image-uploader.component.html',
     providers: [ImageService]
 })
 export class ImageUploaderComponent{
@@ -40,25 +42,55 @@ export class ImageUploaderComponent{
 
 
     add(){
-
+        this._setUploadMode()
     }
 
     clear(){
-
     }
 
     edit(){
-
+        this._setUploadMode();
     }
 
-    save(){
+    save(): any{
         if (this._changed){
-            this._imageService.upload(this._sourceBase64);
+            return this._imageService.upload(this._sourceBase64)
+                .subscribe(res => {
+                    this.source = res.link;
+                    this._clearBase64();
+                    this._setPreviewMode();
+                });
         }
     }
 
     private _defaults(){
         this._sourceUrl = null;
         this._sourceBase64 = null;
+        this._setPreviewMode();
+    }
+
+    private _clearBase64(){
+        this._sourceBase64 = null;
+    }
+
+    private _fileSelected(e){
+        let reader  = new FileReader();
+        let self = this;
+
+        reader.onloadend = function () {
+            self._sourceBase64 = reader.result;
+        }
+
+        if (e.target.files.length > 0) {
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    }
+
+    private _setPreviewMode(){
+        this._previewMode = true;
+    }
+
+    private _setUploadMode(){
+        this._previewMode = false;
     }
 }

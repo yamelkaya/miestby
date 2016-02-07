@@ -11,7 +11,7 @@ export class ImageService{
     private _newsAlbumId = '6ffHE';
     private _clientId = 'e93f60e23a23c87';
     private _clientSecret = '99c27868c333fceb1ebe6adbde0e86737ff61d36';
-    private _albumId = 'TopvaSlsxbMNV7V';
+    private _albumId = 'IQTAn';
 
     private get _albumApiPath () {
         return this._host + '/3/album';
@@ -24,12 +24,26 @@ export class ImageService{
         this._http = http;
     }
 
-    upload(imgBase64){
-        this._http.post(this._imageApiPath, this._prepareImageBody(imgBase64),this._prepareImageOptions())
-            .subscribe(res => {
+    upload(imgBase64): any{
+        return this._http
+            .post(this._imageApiPath, this._prepareImageBody(imgBase64),this._prepareImageOptions())
+            .map(res => {
+                let data = res.json().data;
+                return {
+                    id: data.id,
+                    link: data.link,
+                    deletehash: data.deletehash
+                }
+            });
+    }
+
+    delete(id){
+        return this._http
+            .delete(this._imageApiPath + `/${id}`, this._prepareImageOptions())
+            .flatMap(res => {
                 if (res.statusText == 'Ok'){
                     let data = res.json();
-                    return Observable.of(data.link);
+                    return Observable.of(data);
                 }
                 else {
                     return Observable.of(null);
@@ -38,11 +52,9 @@ export class ImageService{
     }
 
     private _prepareImageBody(imgBase64){
-        return JSON.stringify({
-            image: imgBase64,
-            type: 'base64',
-            album: this._albumId
-        });
+        imgBase64 = imgBase64.replace(/^data:image\/\w+;base64,/, "");
+        let body = `image=${imgBase64}}`;
+        return body;
     }
 
     private _prepareImageOptions() {
@@ -50,7 +62,7 @@ export class ImageService{
             headers: new Headers(
                 {
                     'Authorization': 'Client-ID ' + this._clientId,
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 }
             )
         };

@@ -31,7 +31,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     this._newsAlbumId = '6ffHE';
                     this._clientId = 'e93f60e23a23c87';
                     this._clientSecret = '99c27868c333fceb1ebe6adbde0e86737ff61d36';
-                    this._albumId = 'TopvaSlsxbMNV7V';
+                    this._albumId = 'IQTAn';
                     this._http = http;
                 }
                 Object.defineProperty(ImageService.prototype, "_albumApiPath", {
@@ -50,11 +50,24 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     configurable: true
                 });
                 ImageService.prototype.upload = function (imgBase64) {
-                    this._http.post(this._imageApiPath, this._prepareImageBody(imgBase64), this._prepareImageOptions())
-                        .subscribe(function (res) {
+                    return this._http
+                        .post(this._imageApiPath, this._prepareImageBody(imgBase64), this._prepareImageOptions())
+                        .map(function (res) {
+                        var data = res.json().data;
+                        return {
+                            id: data.id,
+                            link: data.link,
+                            deletehash: data.deletehash
+                        };
+                    });
+                };
+                ImageService.prototype.delete = function (id) {
+                    return this._http
+                        .delete(this._imageApiPath + ("/" + id), this._prepareImageOptions())
+                        .flatMap(function (res) {
                         if (res.statusText == 'Ok') {
                             var data = res.json();
-                            return Rx_1.Observable.of(data.link);
+                            return Rx_1.Observable.of(data);
                         }
                         else {
                             return Rx_1.Observable.of(null);
@@ -62,17 +75,15 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Rx'], function(exports_
                     });
                 };
                 ImageService.prototype._prepareImageBody = function (imgBase64) {
-                    return JSON.stringify({
-                        image: imgBase64,
-                        type: 'base64',
-                        album: this._albumId
-                    });
+                    imgBase64 = imgBase64.replace(/^data:image\/\w+;base64,/, "");
+                    var body = "image=" + imgBase64 + "}";
+                    return body;
                 };
                 ImageService.prototype._prepareImageOptions = function () {
                     return {
                         headers: new http_1.Headers({
                             'Authorization': 'Client-ID ' + this._clientId,
-                            'Accept': 'application/json'
+                            'Content-Type': 'application/x-www-form-urlencoded'
                         })
                     };
                 };

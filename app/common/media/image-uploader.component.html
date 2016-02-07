@@ -1,0 +1,18 @@
+<div class="well">
+    <div [hidden]="!_previewMode">
+        <div *ngIf="!empty">
+            <img [src]="source">
+            <button class="btn btn-primary" type="button" (click)="edit()">Редактировать</button>
+        </div>
+        <div *ngIf="empty">
+            <button class="btn btn-primary" type="button" (click)="add()">Добавить</button>
+        </div>
+    </div>
+
+    <div [hidden]="_previewMode">
+        <img [src]="_sourceInternal">
+        <input type="file" (change)="_fileSelected($event)">
+        <button class="btn btn-primary" type="button" (click)="save()">Сохранить</button>
+    </div>
+
+</div>

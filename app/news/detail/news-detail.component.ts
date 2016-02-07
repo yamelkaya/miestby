@@ -7,11 +7,12 @@ import {DateMomentPipe} from '../../pipes/date-moment.pipe';
 import {PageHeaderComponent} from '../../common/page-header.component';
 import {MediaItemComponent, ImageItemComponent, VideoItemComponent} from "../../common/media/media-item.component";
 import {MediaContainerComponent} from "../../common/media/media-container.component";
+import {ImageUploaderComponent} from '../../common/media/image-uploader.component';
 
 @Component({
     templateUrl:  'app/news/detail/news-detail.component.html',
     pipes: [DateMomentPipe],
-    directives: [PageHeaderComponent, MediaItemComponent, MediaContainerComponent, ImageItemComponent, VideoItemComponent]
+    directives: [PageHeaderComponent, MediaItemComponent, MediaContainerComponent, ImageItemComponent, VideoItemComponent, ImageUploaderComponent]
 })
 export class NewsDetailComponent extends NewsBaseComponent{
     private _newsService: NewsService;
